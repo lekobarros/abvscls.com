@@ -8,7 +8,7 @@
 <style lang="scss">
 .hero-text {
   position: relative;
-  z-index: 10;
+  z-index: 20;
 
   // Screen Medium
   @media screen and (min-width: $breakpoint-screen-md) {

@@ -10,6 +10,20 @@ module.exports = {
 	],
 	theme: {
 		colors: {
+			'athens-gray': {
+				DEFAULT: '#EBEBEC',
+				50: '#F5F5F6',
+				100: '#EBEBEC',
+				200: '#CECED1',
+				300: '#B1B1B5',
+				400: '#95959A',
+				500: '#78787E',
+				600: '#5D5D62',
+				700: '#414145',
+				800: '#262628',
+				900: '#0B0B0B',
+				950: '#000000'
+			},
 			'woodsmoke': {
 				DEFAULT: '#161618',
 				50: '#6E6E78',

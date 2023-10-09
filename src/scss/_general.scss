@@ -1,0 +1,19 @@
+.c-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1440px;
+
+  // Screen Under Large
+  @media screen and (max-width: $breakpoint-screen-lg) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  // Screen Upper Larger
+  @media screen and (min-width: $breakpoint-screen-lg) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
