@@ -15,6 +15,7 @@
         :title="item.website"
         :subtitle="item.subtitle || null"
         :description="item.short_description"
+        :date="item.years"
         :url="item.url"
         :color="item.color"
       />
