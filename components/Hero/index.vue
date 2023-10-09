@@ -50,61 +50,46 @@ const doResetAnimation = (): void => {
 
 <template>
   <div class="section-hero" @mousemove="({ clientX, clientY }) => (posTrackMouse = { clientX, clientY })">
-    <div class="hero">
-      <!-- Hero: Text -->
-      <TheHeroText />
-      <!-- Hero: Figure -->
-      <TheHeroFigure />
-      <!-- Hero: Circles -->
-      <TheHeroCircle :posTrackMouse="posTrackMouse" />
-    </div>
+    <div class="c-container">
+      <div class="flex flex-col justify-between gap-4">
+        <div class="c-hero">
+          <!-- Hero: Text -->
+          <TheHeroText />
+          <!-- Hero: Figure -->
+          <TheHeroFigure />
+          <!-- Hero: Circles -->
+          <TheHeroCircle :posTrackMouse="posTrackMouse" />
+        </div>
 
-    <TheHeroContact />
+        <TheHeroContact />
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
 .section-hero {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
   padding-top: 4rem;
-  padding-right: 1rem;
   padding-bottom: 4rem;
-  padding-left: 1rem;
   width: 100%;
   min-height: 100svh;
   background-color: $color-white;
   color: $color-woodsmoke-default;
-  overflow: hidden;
-
-  // Screen Large
-  @media screen and (min-width: $breakpoint-screen-lg) {
-    padding-right: 2rem;
-    // padding-bottom: 2rem;
-    padding-left: 2rem;
-  }
-
-  // Screen Extra Large
-  @media screen and (min-width: $breakpoint-screen-xl) {
-    padding-right: 4rem;
-    // padding-bottom: 2rem;
-    padding-left: 4rem;
-  }
+  // overflow: hidden;
 }
 
-.hero {
+.c-hero {
   position: relative;
-  z-index: 20;
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 1.5rem;
-  //   height: clamp(525px, 525px, 685px);
-  // overflow: hidden;
 
-  // Screen Small
+  // Screen Under Large
+  @media screen and (max-width: $breakpoint-screen-lg) {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
+
+  // Screen Larger
   @media screen and (min-width: $breakpoint-screen-lg) {
     display: grid;
     grid-template-rows: repeat(8, 1fr);

@@ -92,20 +92,19 @@ const doResetAnimation = (): void => {
 </script>
 
 <template>
-  <div class="hero-radial" ref="root">
+  <div class="c-hero_radial-wrap" ref="root">
     <div class="hero-radial-circle hero-radial-circle-first" />
     <div class="hero-radial-circle hero-radial-circle-second" />
   </div>
 </template>
 
 <style lang="scss">
-.hero-radial {
+.c-hero_radial-wrap {
   display: none;
 
   @media (min-width: $breakpoint-screen-lg) {
     display: inline;
     position: absolute;
-    z-index: -1;
     bottom: 0;
     left: 0;
     width: 50%;

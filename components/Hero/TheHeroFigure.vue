@@ -7,6 +7,9 @@
 
 <style lang="scss">
 .hero-figure {
+  position: relative;
+  z-index: 10;
+
   // Screen Large
   @media screen and (min-width: $breakpoint-screen-lg) {
     grid-area: 1 / 4 / 9 / 9;
