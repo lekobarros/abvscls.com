@@ -22,11 +22,17 @@
     </div>
   </section>
 </template>
+
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import projects from '@/src/data/projects'
+
 // Components
 import ProjectItem from './ProjectItem.vue'
+
+// General State
+const currentProjectView = ref<null | string>(null)
+
 // Methods
 const setCurrentProjectView = (id: string): void => {
 	currentProjectView.value = id
