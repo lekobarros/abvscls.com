@@ -4,7 +4,7 @@ export default [
 		subtitle: 'A website that\'s built with HTML5/CSS3 and jQuery',
 		short_description: 'Built a website with a clean design to follow new rules of web semantics.',
 		url: 'https://pokemonbr.com/',
-		years: '2014 — 2016',
+		years: '2015 — 2016',
 		color: { primary: '#004f72', secondary: '#00283A' }
 	},
 	{
@@ -42,7 +42,7 @@ export default [
 	{
 		website: 'AtarB2B',
 		subtitle: 'Create new ways to improve user experience',
-		short_description: 'Built a new website with Vue.js and Nuxt.js to improve user-experience (UX) and user-interface (UI).',
+		short_description: 'Built new features for BaaS services with Vue.js and React and improved the user contact experience for the main website.',
 		years: '2021 - 2023',
 		url: 'https://atarb2b.com.br/',
 		color: { primary: '#01AEFA', secondary: '#01608A' }

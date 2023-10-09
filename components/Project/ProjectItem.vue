@@ -8,7 +8,8 @@ const props = defineProps<{
   id: string | number
   title: string
   subtitle?: string | null
-  description: string
+  description: string,
+  date?: string | null,
   url?: string | null
   color: Color
 }>()
@@ -33,7 +34,8 @@ const onMouseEnter = (): void => {
         <!-- Project Info -->
         <div class="c-work-heading">
           <h3 class="c-work-heading__title">{{ props.title }}</h3>
-          <p v-if="props.subtitle">{{ props.subtitle }}</p>
+          <p class="mb-2" v-if="props.subtitle">{{ props.subtitle }}</p>
+          <p class="text-xs font-medium" v-if="props.date">{{ props.date }}</p>
         </div>
 
         <!-- Project Description -->
