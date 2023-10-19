@@ -7,6 +7,12 @@ import TheHeader from '@/components/layout/TheHeader/index.vue'
 
 // General State
 const globalStore = useGlobalStore()
+const nuxtApp = useNuxtApp()
+
+// Nuxt Hooks
+nuxtApp.hook('page:finish', () => {
+	window.scrollTo(0, 0)
+})
 </script>
 
 <template>

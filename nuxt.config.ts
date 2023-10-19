@@ -60,7 +60,14 @@ export default defineNuxtConfig({
 				'/_ipx/s_768x440/assets/images/hero_abvscls.jpg',
 				'/_ipx/s_1190x682/assets/images/hero_abvscls.jpg',
 				'/_ipx/s_1536x880/assets/images/hero_abvscls.jpg',
-				'_ipx/q_50&blur_3&s_10x10/assets/images/hero_abvscls.jpg'
+				'_ipx/q_50&blur_3&s_10x10/assets/images/hero_abvscls.jpg',
+				// Projects
+				'/_ipx/_/assets/images/frame_pokemonbr.jpeg',
+				'/_ipx/_/assets/images/frame_metha_energia.jpeg',
+				'/_ipx/_/assets/images/frame_metha_energia_signup.jpeg',
+				'/_ipx/_/assets/images/frame_metha_energia_blog.jpeg',
+				'/_ipx/_/assets/images/frame_fca_latam.jpeg',
+				'/_ipx/_/assets/images/frame_atarb2b.jpeg',
 			]
 		}
 	}
