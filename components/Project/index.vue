@@ -45,7 +45,7 @@
 
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import projects from '@/src/data/projects'
 import gsap from 'gsap'
 
@@ -130,7 +130,7 @@ const onMoveMouse = (event: MouseEvent) => {
 	if (wrapper instanceof HTMLElement ) {
 		const y = `${axisY * 0.5}rem`
 		const x = `${axisX * 1.5}rem`
-		console.log(x, y)
+		// console.log(x, y)
 		// const spotlightImageSize = 20 // units in rem
 		// const top = `${elCurrentImage.offsetTop + header}px`
 		// const translateY = `-${id * spotlightImageSize}rem`
