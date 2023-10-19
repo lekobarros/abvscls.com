@@ -43,8 +43,9 @@
   </section>
 </template>
 
+
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import projects from '@/src/data/projects'
 import gsap from 'gsap'
 
