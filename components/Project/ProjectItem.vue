@@ -58,7 +58,12 @@ const onMouseEnter = (): void => {
   padding-top: 1rem;
   padding-bottom: 1.5rem;
   height: 16rem;
+  // border-bottom: 1px solid #474747;
   transition: all 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+
+  // &:first-child {
+  //   border-top: 1px solid #474747;
+  // }
 
   &:hover {
     padding-top: 2.5rem;

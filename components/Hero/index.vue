@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { GSAPTimeline } from 'gsap'
+// import { GSAPTimeline } from 'gsap'
 import gsap from '@/src/plugins/gsap'
 import useGlobalStore from '@/src/store/global'
 import { ref, onMounted, watch } from 'vue'
@@ -31,7 +31,7 @@ onMounted((): void => {
 
 // Methods
 const createHeroAnimation = (): void => {
-	const tl: GSAPTimeline = gsap.timeline({ paused: !0, onComplete: () => globalStore.setLoad(true) })
+	const tl = gsap.timeline({ paused: !0, onComplete: () => globalStore.setLoad(true) })
 	tl.addLabel('start', '>')
 
 	tl.heroFadeIn('.hero-text-heading', {}, 'start')
@@ -58,7 +58,6 @@ const doResetAnimation = (): void => {
           <!-- Hero: Figure -->
           <TheHeroFigure />
           <!-- Hero: Circles -->
-          <TheHeroCircle :posTrackMouse="posTrackMouse" />
         </div>
 
         <TheHeroContact />
@@ -69,10 +68,8 @@ const doResetAnimation = (): void => {
 
 <style lang="scss">
 .section-hero {
-  position: relative;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  width: 100%;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
   min-height: 100svh;
   background-color: $color-white;
   color: $color-woodsmoke-default;

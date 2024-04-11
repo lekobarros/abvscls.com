@@ -1,19 +1,53 @@
-.c-container {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  max-width: 1440px;
+body {
+  color: $color-woodsmoke-default;
+  font-family: 'Helvetica Now Display', sans-serif;
+  font-size: 1vw;
+  font-weight: 400;
+  line-height: 1.6;
 
-  // Screen Under Large
   @media screen and (max-width: $breakpoint-screen-lg) {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    font-size: 1.5vw;
+  }
+}
+
+.c-container {
+  position: relative;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  width: 100%;
+
+  @media (min-width: 640px) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
-  // Screen Upper Larger
-  @media screen and (min-width: $breakpoint-screen-lg) {
-    padding-left: 2rem;
-    padding-right: 2rem;
+
+  @media (min-width: 1280px) {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  @media (min-width: 1450px) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  @media (min-width: 1800px) {
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+
+  @media (min-width: 2100px) {
+    padding-left: 15rem;
+    padding-right: 15rem;
+  }
+}
+
+// Setting Links
+a:not([class]) {
+  color: #1E1E1E;
+
+  &:hover {
+    border-bottom: 1px solid #1E1E1E;
   }
 }

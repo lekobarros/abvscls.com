@@ -1,8 +1,13 @@
 <template>
-  <section class="relative" ref="root">
+  <section class="relative ok" ref="root">
     <!-- Header -->
-    <header class="c-container mb-6">
-      <h2 class="text-woodsmoke-500 font-medium text-2xl capitalize">Featured Works</h2>
+    <header class="c-container c-works-grid mb-12">
+      <div class="c-works-grid__left">
+        <h2 class="font-medium text-5xl capitalize">Featured Works</h2>
+      </div>
+      <div class="c-works-grid__right">
+        <p class="text-base text-right">Advanced features like SLAs, Triage, and Linear Insights unlock new levels of control over your request workflows.</p>
+      </div>
     </header>
 
     <!-- Featured Work Items -->
@@ -32,7 +37,7 @@
               <div class="c-works-spotlight_images" ref="spotlightImage">
                 <!-- Work Images -->
                 <div class="c-works-spotlight_image" v-for="(item, key) in projects" :key="`c-project-${key}`">
-                  <NuxtImg :src="item.frame" :alt="`Project ${key}`" />
+                  <!-- <NuxtImg :src="item.frame" :alt="`Project ${key}`" /> -->
                 </div>
               </div>
             </div>
@@ -42,7 +47,6 @@
     </div>
   </section>
 </template>
-
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
@@ -70,7 +74,7 @@ watch(currentProjectView, value => {
 	const currentId = `#c-project-${id}`
 
 	// Get the width of the viewport
-	const header = root.value?.querySelector('header')?.offsetHeight ?? 0 as number
+	const header = root.value?.querySelector('header')?.offsetHeight ?? (0 as number)
 	const elCurrentImage = root.value?.querySelector<HTMLElement>(currentId) as HTMLElement
 
 	if (value !== null) {
@@ -107,51 +111,71 @@ const onImagesToggleOpacity = (opacity: number): void => {
 }
 
 const onMoveMouse = (event: MouseEvent) => {
-	// Get the width of the viewport
-	const viewportWidth = window.innerWidth
-	const viewportHeight = window.innerHeight
+	// // Get the width of the viewport
+	// const viewportWidth = window.innerWidth
+	// const viewportHeight = window.innerHeight
 
-	// Calculate the mouse position within the viewport
-	const mouseX = event.clientX
-	const mouseY = event.clientX
+	// // Calculate the mouse position within the viewport
+	// const mouseX = event.clientX
+	// const mouseY = event.clientX
 
-	// Calculate the position on the X-axis as a value between -1 and 1
-	const axisX = (mouseX / viewportWidth) * 2 - 1
-	const axisY = (mouseY / viewportHeight) * 2 - 1
+	// // Calculate the position on the X-axis as a value between -1 and 1
+	// const axisX = (mouseX / viewportWidth) * 2 - 1
+	// const axisY = (mouseY / viewportHeight) * 2 - 1
 
-	// Ensure the value stays within the range of -1 to 1
-	console.log(Math.max(-1, Math.min(1, axisX)))
+	// // Ensure the value stays within the range of -1 to 1
+	// console.log(Math.max(-1, Math.min(1, axisX)))
 
-	// 2rem
-	// console.log(positionOnXAxis * 2, 444)
+	// // 2rem
+	// // console.log(positionOnXAxis * 2, 444)
 
-	const wrapper = spotlight.value
+	// const wrapper = spotlight.value
 
-	if (wrapper instanceof HTMLElement ) {
-		const y = `${axisY * 0.5}rem`
-		const x = `${axisX * 1.5}rem`
-		// console.log(x, y)
-		// const spotlightImageSize = 20 // units in rem
-		// const top = `${elCurrentImage.offsetTop + header}px`
-		// const translateY = `-${id * spotlightImageSize}rem`
+	// if (wrapper instanceof HTMLElement) {
+	// 	const y = `${axisY * 0.5}rem`
+	// 	const x = `${axisX * 1.5}rem`
+	// 	// console.log(x, y)
+	// 	// const spotlightImageSize = 20 // units in rem
+	// 	// const top = `${elCurrentImage.offsetTop + header}px`
+	// 	// const translateY = `-${id * spotlightImageSize}rem`
 
-		// Call Animation
-		// gsap.killTweensOf(wrapper)
-		gsap.to(wrapper, { x,  transformOrigin:'0% 100%', duration: 0.3, ease: 'cubic-bezier(0.86, 0, 0.07, 1)' })
-		// gsap.to(image, { translateY, duration: 0.3, ease: 'cubic-bezier(0.86, 0, 0.07, 1)' })
-	}
+	// 	// Call Animation
+	// 	// gsap.killTweensOf(wrapper)
+	// 	gsap.to(wrapper, { x, transformOrigin: '0% 100%', duration: 0.3, ease: 'cubic-bezier(0.86, 0, 0.07, 1)' })
+	// 	// gsap.to(image, { translateY, duration: 0.3, ease: 'cubic-bezier(0.86, 0, 0.07, 1)' })
+	// }
 }
 </script>
 
 <style lang="scss">
+.ok {
+  padding-top: 4rem;
+  color: #fff;
+  background-color: #121212;
+}
+
 .c-works-grid {
   position: relative;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
   gap: 1rem;
-  width: 100%;
-  height: 100%;
+  // width: 100%;
+  // height: 100%;
+}
+
+.c-works-grid__left {
+  grid-area: span 1 / span 4 / span 1 / span 3;
+  // align-self: center;
+  // justify-self: start;
+
+  @media screen and (min-width: $breakpoint-screen-xl) {
+    grid-area: span 1 / span 3 / span 1 / span 3;
+  }
+}
+
+.c-works-grid__right {
+  grid-area: 1 / 9 / 1 / 13;
 }
 
 .c-works-grid_wrap {

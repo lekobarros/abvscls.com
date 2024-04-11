@@ -1,6 +1,12 @@
+// Breakpoints
 $breakpoint-screen-xs: 320px;
 $breakpoint-screen-sm: 640px;
 $breakpoint-screen-md: 768px;
 $breakpoint-screen-lg: 1024px;
 $breakpoint-screen-xl: 1280px;
 $breakpoint-screen-2xl: 1536px;
+
+// Easing function
+$easing-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+// cubic-bezier(.15,0,.33,.1)
+// cubic-bezier(0.16, 1, 0.3, 1)
