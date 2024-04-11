@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { GSAPTimeline } from 'gsap'
 import gsap from '@/src/plugins/gsap'
 import useGlobalStore from '@/src/store/global'
 import { ref, onMounted, watch } from 'vue'
@@ -20,7 +19,7 @@ onMounted((): void => {
 
 // Methods
 const createHeroAnimation = (): void => {
-	const tl: GSAPTimeline = gsap.timeline({ paused: !0 })
+	const tl = gsap.timeline({ paused: !0 })
 	const query = gsap.utils.selector(root.value)
 	const contactBar = query('.contact-bar')
 	const children = [query('.contact-bar-item')]
