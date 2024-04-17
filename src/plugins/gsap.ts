@@ -41,10 +41,11 @@ gsap.registerEffect({
 			rotate: config.rotate,
 			duration: config.duration,
 			delay: config.delay,
-			ease: 'Power2.easeOut', // out quart
+			ease: 'Power2.easeOut',
+			stagger: config.stagger
 		})
 	},
-	defaults: { opacity: 1, translateY: 0, rotate: 0, duration: 0.8, delay: 0.1 },
+	defaults: { opacity: 1, translateY: 0, rotate: 0, duration: 0.8, delay: 0.1, stagger: 0.1 },
 	extendTimeline: true
 })
 

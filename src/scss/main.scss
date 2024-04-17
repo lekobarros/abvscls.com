@@ -1,2 +1,12 @@
 @import '_fonts.scss';
 @import '_general.scss';
+@import '_animations.scss';
+
+#app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  color: $color-woodsmoke-950;
+  background-color: $color-white;
+  overflow: hidden;
+}

@@ -25,8 +25,14 @@ useHead({
 </script>
 
 <template>
-  <div>
+  <main class="c-main">
     <TheHero />
 		<TheProject />
-  </div>
+	</main>
 </template>
+
+<style lang="scss">
+.c-main {
+	padding-top: 6.5rem;
+}
+</style>
