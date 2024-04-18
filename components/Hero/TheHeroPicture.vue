@@ -16,7 +16,7 @@
 <style lang="scss">
 .c-hero__picture {
   position: relative;
-  z-index: 10;
+  z-index: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;

@@ -4,7 +4,6 @@ import useGlobalStore from '@/src/store/global'
 import { onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 
-
 // Components
 import TheHeroText from './TheHeroText.vue'
 import TheHeroPicture from './TheHeroPicture.vue'
@@ -57,12 +56,12 @@ const doResetAnimation = (): void => {
 .section-hero {
   position: relative;
   width: 100%;
-  height: calc(100svh - 6.5rem);
   background-color: $color-white;
   color: $color-woodsmoke-default;
 
   @media screen and (min-width: $breakpoint-screen-lg) {
     padding-bottom: 8rem;
+    height: calc(100svh - 6.5rem);
   }
 
   @media screen and (min-width: $breakpoint-screen-xl) {

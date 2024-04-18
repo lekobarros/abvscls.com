@@ -66,7 +66,7 @@ const doResetAnimation = (): void => {
 <style lang="scss">
 .c-hero__contact {
   position: relative;
-  z-index: 10;
+  z-index: 20;
 
   @media screen and (max-width: $breakpoint-screen-lg) {
     order: 2;
