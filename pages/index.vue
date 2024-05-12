@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+// import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+
 import Lenis from '@studio-freight/lenis'
-import { onMounted } from 'vue'
+// import LocomotiveScroll from 'locomotive-scroll'
 
 // Components
 import TheOrganismHero from '@/components/Organisms/Section/Hero/index.vue'
