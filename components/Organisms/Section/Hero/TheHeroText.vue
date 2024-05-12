@@ -1,5 +1,28 @@
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
+import useOrganismHeroStore from './useAnimation'
+import * as animations from '@/src/constants/animations'
+
+// General State
+const heroStore = useOrganismHeroStore()
+const root = ref<HTMLElement | null>(null)
+
+// Hooks
+onMounted((): void => {
+	const { value: el } = root as { value: HTMLElement | null }
+	const { tl } = heroStore
+
+	if (!el || !tl) return console.warn('Element or timeline not found')
+	else if (heroStore.isFinished) return
+
+	const children = [el.querySelector('.c-hero__text-heading'), el.querySelector('.c-hero__text-subtitle')] as HTMLElement[]
+	heroStore.set(children, { opacity: 0, translateY: '15%', rotate: '1deg' })
+	heroStore.add(children, { stagger: 0.1 }, animations.HERO_START)
+})
+</script>
+
 <template>
-  <div class="c-hero__text space-y-4 md:space-y-0">
+  <div class="c-hero__text space-y-4 md:space-y-0" ref="root">
     <h1 class="c-hero__text-heading">A Front-end Engineer <span class="md:block">based BH, BR.</span></h1>
     <p class="c-hero__text-subtitle">Developing and specialize in creating visually appealing and highly functional websites and Single Page Applications (SPAs).</p>
   </div>

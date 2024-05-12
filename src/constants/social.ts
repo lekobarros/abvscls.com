@@ -15,14 +15,14 @@ export const LIST_SOCIAL_DATA = {
 		name: 'Medium',
 		url: 'https://medium.com/@abvscls'
 	},
-	spotify: {
-		name: 'Spotify',
-		url: 'https://open.spotify.com/user/lekobarros'
-	},
-	codepen: {
-		name: 'Codepen',
-		url: 'https://codepen.io/alexvasconcelos'
-	},
+	// spotify: {
+	// 	name: 'Spotify',
+	// 	url: 'https://open.spotify.com/user/lekobarros'
+	// },
+	// codepen: {
+	// 	name: 'Codepen',
+	// 	url: 'https://codepen.io/alexvasconcelos'
+	// },
 	dribbble: {
 		name: 'Dribbble',
 		url: 'https://dribbble.com/abvscls'

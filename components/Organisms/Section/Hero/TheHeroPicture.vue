@@ -1,5 +1,27 @@
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
+import useOrganismHeroStore from './useAnimation'
+import * as animations from '@/src/constants/animations'
+
+// General State
+const heroStore = useOrganismHeroStore()
+const root = ref<HTMLElement | null>(null)
+
+// Hooks
+onMounted((): void => {
+	const { value: el } = root as { value: HTMLElement | null }
+	const { tl } = heroStore
+
+	if (!el || !tl) return console.warn('Element or timeline not found')
+	else if (heroStore.isFinished) return
+
+	heroStore.set(el, { opacity: 0, translateY: '15%', rotate: '3deg' })
+	heroStore.add(el, {}, animations.HERO_START)
+})
+</script>
+
 <template>
-  <div class="c-hero__picture">
+  <div class="c-hero__picture" ref="root">
     <NuxtPicture
       format="webp"
       src="/img/hero-abvscls.jpg"

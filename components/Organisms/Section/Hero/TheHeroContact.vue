@@ -1,46 +1,30 @@
 <script lang="ts" setup>
-import gsap from '@/src/plugins/gsap'
-import useGlobalStore from '@/src/store/global'
-import { ref, onMounted, watch } from 'vue'
-import { storeToRefs } from 'pinia'
-
+import { onMounted, ref } from 'vue'
+import gsap from 'gsap'
+import useOrganismHeroStore from './useAnimation'
 import { LIST_SOCIAL_DATA } from '@/src/constants/social'
+import * as animations from '@/src/constants/animations'
 
 // General State
-const globalStore = useGlobalStore()
-const { isLoaded } = storeToRefs(globalStore)
+const heroStore = useOrganismHeroStore()
 const root = ref<HTMLElement | null>(null)
 const socialData = ref(LIST_SOCIAL_DATA)
 
-watch(isLoaded, newVal => {
-	if (newVal) createHeroAnimation()
-})
-
+// Hooks
 onMounted((): void => {
-	if (!globalStore.isLoaded) doResetAnimation()
+	const { value: el } = root as { value: HTMLElement | null }
+	const { tl } = heroStore
+
+	if (!el || !tl) return console.warn('Element or timeline not found')
+	else if (heroStore.isFinished) return
+
+	const query = gsap.utils.selector(el)
+
+	heroStore.set(['.c-hero__contact-text', '.c-hero__contact-navbar'], { opacity: 0, translateX: '-15%', rotate: '5deg' })
+	heroStore.set(query('.c-hero__contact-navbar li'), { opacity: 0, scale: 0.5, rotate: '1deg' })
+	heroStore.add(['.c-hero__contact-text', '.c-hero__contact-navbar'], { translateX: 0 }, animations.HERO_START)
+	heroStore.add(query('.c-hero__contact-navbar li'), { scale: 1, delay: 0.3, stagger: 0.15, duration: 0.3 }, animations.HERO_START)
 })
-
-// Methods
-const createHeroAnimation = (): void => {
-	const tl = gsap.timeline({ paused: !0 })
-	const query = gsap.utils.selector(root.value)
-	const children = [...query('.c-hero__contact-navbar li a'), ]
-
-	// Start Timeline
-	tl.addLabel('start', '>')
-	tl.heroFadeIn('.c-hero__contact-text', {}, 'start+=0.3')
-	tl.to(children, { scale: 1, opacity: 1, duration: 0.6, stagger: 0.3, 			ease: 'circ.inOut',  }, 'start+=0.45')
-
-	tl.play()
-}
-
-const doResetAnimation = (): void => {
-	const query = gsap.utils.selector(root.value)
-	const children = [...query('.c-hero__contact-navbar li a')]
-
-	gsap.set('.c-hero__contact-text', { opacity: 0, translateY: '15%', rotate: '1deg' })
-	gsap.set(children, { scale: 0.5 })
-}
 </script>
 
 <template>
@@ -108,6 +92,7 @@ const doResetAnimation = (): void => {
     display: flex;
     align-items: center;
     gap: 1rem;
+    transform-origin: bottom;
 
     & > span {
       min-width: 6rem;
@@ -130,13 +115,17 @@ const doResetAnimation = (): void => {
 
     li {
       position: relative;
-      transition-timing-function: ease-in-out;
-      transition-delay: 0.1s;
 
-      &:hover {
-        transform: scale3d(1.1, 1.1, 1.1);
-        transition-duration: 0.1s;
-        transition-delay: 0s;
+      & > a {
+        display: block;
+        transition-timing-function: ease-in-out;
+        transition-delay: 0.1s;
+
+        &:hover {
+          transform: scale3d(1.5, 1.5, 1.5);
+          transition-duration: 0.1s;
+          transition-delay: 0s;
+        }
       }
 
       .nuxt-icon svg {

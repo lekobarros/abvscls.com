@@ -23,9 +23,9 @@ export default defineNuxtConfig({
 			}
 		}
 	},
-	css: ['~/assets/css/main.css', '@/src/scss/main.scss'],
+	css: ['@/assets/css/main.css', '@/src/scss/main.scss'],
 	// Nuxt Modules
-	modules: [  'nuxt-icons', '@vueuse/nuxt','@nuxtjs/fontaine', '@nuxt/image', '@pinia/nuxt', '@nuxtjs/eslint-module', '@zadigetvoltaire/nuxt-gtm'],
+	modules: ['nuxt-icons', '@vueuse/nuxt', '@nuxtjs/fontaine', '@nuxt/image', '@pinia/nuxt', '@nuxtjs/eslint-module', '@zadigetvoltaire/nuxt-gtm'],
 	fontMetrics: {
 		fonts: ['Satoshi']
 	},
@@ -34,15 +34,15 @@ export default defineNuxtConfig({
 	},
 	image: {
 		screens: {
-			'xs': 320,
-			'sm': 640,
-			'md': 768,
-			'lg': 1024,
-			'xl': 1280,
+			xs: 320,
+			sm: 640,
+			md: 768,
+			lg: 1024,
+			xl: 1280,
 			'2xl': 1536,
 			'3xl': 1800,
-			'4xl': 2100,
-		},
+			'4xl': 2100
+		}
 	},
 	postcss: {
 		plugins: {

@@ -1,8 +1,13 @@
 <script lang="ts" setup>
-import gsap from '@/src/plugins/gsap'
-import useGlobalStore from '@/src/store/global'
-import { onMounted, watch } from 'vue'
+import { watch, onBeforeMount } from 'vue'
 import { storeToRefs } from 'pinia'
+import useGlobalStore from '@/src/store/global'
+import useOrganismHeroStore from './useAnimation'
+
+// General State
+const globalStore = useGlobalStore()
+const heroStore = useOrganismHeroStore()
+const { isLoaded } = storeToRefs(globalStore)
 
 // Components
 import TheHeroText from './TheHeroText.vue'
@@ -10,44 +15,27 @@ import TheHeroPicture from './TheHeroPicture.vue'
 import TheHeroSpinner from './TheHeroSpinner.vue'
 import TheHeroContact from './TheHeroContact.vue'
 
-// General State
-const globalStore = useGlobalStore()
-const { isLoaded } = storeToRefs(globalStore)
-
+// Watch
 watch(isLoaded, newVal => {
-	if (newVal) createHeroAnimation()
+	if (newVal) heroStore.doPlayTimeline()
 })
 
-onMounted((): void => {
-	if (!globalStore.isLoaded) doResetAnimation()
+// Hooks
+onBeforeMount((): void => {
+	const { tl } = heroStore
+	if (!isLoaded.value && !tl) heroStore.createTimeline()
 })
-
-// Methods
-const createHeroAnimation = (): void => {
-	const tl = gsap.timeline({ paused: !0, onComplete: () => globalStore.setLoad(true) })
-	tl.addLabel('start', '>')
-
-	tl.heroFadeIn('.c-hero__text-heading', {}, 'start')
-	tl.heroFadeIn('.c-hero__text-subtitle', {}, 'start+=0.1')
-	tl.heroFadeIn('.c-hero__picture', {}, 'start+=0.05')
-
-	tl.play()
-}
-
-const doResetAnimation = (): void => {
-	gsap.set('.c-hero__text-heading', { opacity: 0, translateY: '15%', rotate: '1deg' })
-	gsap.set('.c-hero__text-subtitle', { opacity: 0, translateY: '15%', rotate: '1deg' })
-	gsap.set('.c-hero__picture', { opacity: 0, translateY: '15%', rotate: '3deg' })
-}
 </script>
 
 <template>
-  <div class="section-hero c-container">
-    <div class="c-hero">
-      <TheHeroText />
-      <TheHeroPicture />
-      <TheHeroSpinner />
-      <TheHeroContact />
+  <div class="section-hero" data-scroll-section>
+    <div class="c-container">
+      <div class="c-hero">
+        <TheHeroText />
+        <TheHeroPicture />
+        <TheHeroSpinner />
+        <TheHeroContact />
+      </div>
     </div>
   </div>
 </template>
@@ -71,6 +59,10 @@ const doResetAnimation = (): void => {
   @media screen and (min-width: $breakpoint-screen-3xl) {
     padding-bottom: 12rem;
   }
+}
+
+.c-container {
+  height: 100%;
 }
 
 .c-hero {
