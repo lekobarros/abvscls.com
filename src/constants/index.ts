@@ -1,0 +1,1 @@
+export const APP_DARK_MODE = 'dark-mode'
