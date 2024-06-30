@@ -17,7 +17,7 @@ onMounted((): void => {
 
 	const children = [el.querySelector('.c-hero__text-heading'), el.querySelector('.c-hero__text-subtitle')] as HTMLElement[]
 	heroStore.set(children, { opacity: 0, translateY: '15%', rotate: '1deg' })
-	heroStore.add(children, { stagger: 0.1 }, animations.HERO_START)
+	heroStore.add(children, { stagger: 0.1, delay: 0.1 }, animations.HERO_START)
 })
 </script>
 
