@@ -7,7 +7,7 @@ import Lenis from '@studio-freight/lenis'
 
 // Components
 import TheOrganismHero from '@/components/Organisms/Section/Hero/index.vue'
-import TheProject from '@/components/Project/index.vue'
+import TheOrganismProject from '@/components/Organisms/Section/Projects/index.vue'
 
 // Off
 onMounted(() => {
@@ -30,7 +30,7 @@ useHead({
 <template>
   <main class="c-main">
     <TheOrganismHero />
-		<TheProject />
+		<TheOrganismProject />
 	</main>
 </template>
 
