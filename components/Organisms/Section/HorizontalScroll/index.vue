@@ -1,9 +1,12 @@
 <script setup>
-// import gsap from 'gsap'
-// import ScrollTrigger from 'gsap/ScrollTrigger'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { chunk } from 'lodash'
+
+// Components
 import horizontalItems from '@/src/data/horizontalSingle'
+
+// Data
+const root = ref(null)
 
 // eslint-disable-next-line no-undef
 const img = useImage()
@@ -26,7 +29,7 @@ const getItemsPath = chunkedPaths.map(chunk => {
 </script>
 
 <template>
-  <div class="section horizontal-items" data-scroll-section>
+  <div class="section horizontal-items" ref="root" data-scroll-section>
     <div class="c-container">
       <div class="horizontal-single__row" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
         <div class="horizontal-single__col" v-for="({ backgroundImage, video }, key) in getItemsPath[0]" :key="`horizontal-single-row-1-item-${key}`">
@@ -50,16 +53,13 @@ const getItemsPath = chunkedPaths.map(chunk => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @media screen and (min-width: $breakpoint-screen-xl) {
   .horizontal-items {
     --section-padding: clamp(5em, 21vh, 12em);
     --gap-padding: clamp(1.5em, 4vw, 2.5em);
-
     position: relative;
     display: block;
-    // padding-top: calc(var(--section-padding) * 0.75);
-    // padding-bottom: calc(var(--section-padding) - 2.5vw);
     overflow: hidden;
 
     .horizontal-single__row {
