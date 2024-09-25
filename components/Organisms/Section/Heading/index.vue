@@ -71,7 +71,7 @@ const root = ref(null)
 
 <style lang="scss">
 .section-heading {
-  padding-top: 10vh;
+  padding-top: 20vh;
   padding-bottom: 20vh;
   background: rgb(255, 255, 255);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.75) 58%, rgba(255, 255, 255, 1) 100%);

@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted, provide } from 'vue'
+
 import LocomotiveScroll from 'locomotive-scroll'
+import Lenis from 'lenis'
 import gsap from 'gsap'
+
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -13,60 +16,76 @@ import OrganismSectionHorizontalScroll from '@/components/Organisms/Section/Hori
 import OrganismSectionHeading from '@/components/Organisms/Section/Heading/index.vue'
 
 const root = ref<HTMLElement | null>(null)
-const locoScroll = ref(null)
+const lenis = ref<any>(null)
+const locoScroll = ref<any>(null)
 
 provide('locoScroll', { locoScroll })
 
-onMounted(() => {
-	console.log('Root element:', root.value) // Debug log
+// onMounted(() => {
+// 	lenis.value = new Lenis()
 
-	locoScroll.value = new LocomotiveScroll({
-		el: root.value,
-		smooth: true
-	})
+// 	lenis.value.on('scroll', e => {
+// 		console.log(e)
+// 	})
 
-	console.log('LocomotiveScroll instance:', locoScroll.value) // Debug log
+// 	function raf(time) {
+// 		lenis.value.raf(time)
+// 		requestAnimationFrame(raf)
+// 	}
 
-	locoScroll.value.on('scroll', () => {
-		console.log('Scroll event triggered') // Debug log
-		ScrollTrigger.update()
-	})
+// 	requestAnimationFrame(raf)
 
-	ScrollTrigger.scrollerProxy(root.value, {
-		scrollTop(value) {
-	  return arguments.length
-				? locoScroll.value.scrollTo(value, 0, 0)
-				: locoScroll.value.scroll.instance.scroll.y
-		},
-		getBoundingClientRect() {
-	  return {
-				top: 0,
-				left: 0,
-				width: window.innerWidth,
-				height: window.innerHeight,
-	  }
-		},
-		pinType: root.value.style.transform ? 'transform' : 'fixed',
-	})
+// 	locoScroll.value = new LocomotiveScroll({
+// 		el: root.value,
+// 		smooth: true
+// 	})
 
-	ScrollTrigger.addEventListener('refresh', () => {
-		console.log('ScrollTrigger refresh event') // Debug log
-		locoScroll.value.update()
-	})
+// 	console.log('LocomotiveScroll instance:', locoScroll.value) // Debug log
 
-	ScrollTrigger.refresh()
-})
+// 	locoScroll.value.on('scroll', () => {
+// 		console.log('Scroll event triggered') // Debug log
+// 		ScrollTrigger.update()
+// 	})
 
-onUnmounted(() => {
-	locoScroll.value.destroy()
-})
+// 	new ResizeObserver(() => locoScroll.value.update()).observe(
+// 		root.value
+// 	)
+
+// 	ScrollTrigger.scrollerProxy(root.value, {
+// 		scrollTop(value) {
+// 			return arguments.length ? locoScroll.value.scrollTo(value, 0, 0) : locoScroll.value.scroll.instance.scroll.y
+// 		},
+// 		getBoundingClientRect() {
+// 			return {
+// 				top: 0,
+// 				left: 0,
+// 				width: window.innerWidth,
+// 				height: window.innerHeight
+// 			}
+// 		},
+// 		pinType: root.value.style.transform ? 'transform' : 'fixed'
+// 	})
+
+// 	ScrollTrigger.addEventListener('refresh', () => {
+// 		console.log('ScrollTrigger refresh event') // Debug log
+// 		locoScroll.value.update()
+// 	})
+
+// 	ScrollTrigger.refresh()
+// })
+
+// onUnmounted(() => {
+// 	if (lenis.value) lenis.value.destroy()
+// 	if (locoScroll.value) locoScroll.value.destroy()
+// })
 </script>
 
 <template>
   <main class="c-main" ref="root">
-	<TheOrganismHero />
-	<OrganismSectionHorizontalScroll />
-	<OrganismSectionHeading />
+    <TheOrganismHero />
+    <OrganismSectionHorizontalScroll />
+    <OrganismSectionHeading />
+    <TheProject />
   </main>
 </template>
 
@@ -78,7 +97,7 @@ onUnmounted(() => {
   will-change: transform;
 
   @media screen and (min-width: $breakpoint-screen-lg) {
-	// position: fixed;
+    // position: fixed;
   }
 }
 </style>

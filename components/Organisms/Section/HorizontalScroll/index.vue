@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref } from 'vue'
 import { chunk } from 'lodash'
 
 // Components

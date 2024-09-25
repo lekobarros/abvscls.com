@@ -1,5 +1,5 @@
 <template>
-  <section class="relative" ref="root">
+  <section class="relative" ref="root" data-scroll-section>
     <!-- Header -->
     <header class="c-container mb-6">
       <h2 class="text-woodsmoke-500 font-medium text-2xl capitalize">Featured Works</h2>
