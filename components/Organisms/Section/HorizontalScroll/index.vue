@@ -1,6 +1,11 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { chunk } from 'lodash'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+// Register ScrollTrigger
+gsap.registerPlugin(ScrollTrigger)
 
 // Components
 import horizontalItems from '@/src/data/horizontalSingle'
@@ -26,12 +31,35 @@ const getItemsPath = chunkedPaths.map(chunk => {
 		else if (video) return { video }
 	})
 })
+
+onMounted(() => {
+	const trigger = document.querySelector('c-main')
+	const sections = document.querySelectorAll('.horizontal-single__row')
+
+	sections.forEach((section, index) => {
+		gsap.to(section, {
+			translateX: index % 2 === 0 ? '-20vw' : '20vw',
+			// ease: '',
+			scrollTrigger: {
+				trigger: trigger,
+				start: '128px top',
+				end: '100%',
+				scrub: true,
+				pin: true,
+				anticipatePin: 1,
+				markers: true,
+				onUpdate: self => {
+					console.log(`Section ${index} progress:`, self.progress)
+				}
+			}
+		})
+	})
+})
 </script>
 
 <template>
-  <div class="section horizontal-items" ref="root" data-scroll-section>
-    <div class="c-container">
-      <div class="horizontal-single__row" data-scroll data-scroll-speed="2" data-scroll-direction="horizontal">
+  <div class="section horizontal-items" ref="root">
+      <div class="horizontal-single__row">
         <div class="horizontal-single__col" v-for="({ backgroundImage, video }, key) in getItemsPath[0]" :key="`horizontal-single-row-1-item-${key}`">
           <div class="horizontal-single__item">
             <div class="horizontal-single__project" :style="{ ...(backgroundImage ? backgroundImage : null) }">
@@ -40,7 +68,7 @@ const getItemsPath = chunkedPaths.map(chunk => {
           </div>
         </div>
       </div>
-      <div class="horizontal-single__row" data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal">
+      <div class="horizontal-single__row">
         <div class="horizontal-single__col" v-for="({ backgroundImage, video }, key) in getItemsPath[1]" :key="`horizontal-single-row-1-item-${key}`">
           <div class="horizontal-single__item">
             <div class="horizontal-single__project" :style="{ ...(backgroundImage ? backgroundImage : null) }">
@@ -49,7 +77,6 @@ const getItemsPath = chunkedPaths.map(chunk => {
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -67,8 +94,15 @@ const getItemsPath = chunkedPaths.map(chunk => {
       flex-wrap: wrap;
       position: relative;
       width: 120vw;
-      left: -10vw;
       will-change: transform;
+
+      &:first-child {
+        left: 10vw;
+      }
+
+      &:last-child {
+        left: -20vw;
+      }
     }
 
     .horizontal-single__col {

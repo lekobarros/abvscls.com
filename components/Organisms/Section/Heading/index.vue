@@ -8,7 +8,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 // ScrollTrigger
 gsap.registerPlugin(ScrollTrigger)
 
-const { locoScroll } = inject('locoScroll')
+// const { locoScroll } = inject('locoScroll')
 // const x  = inject('locoScroll')
 const root = ref(null)
 
