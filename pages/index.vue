@@ -12,11 +12,14 @@ import OrganismSectionHeading from '@/components/Organisms/Section/Heading/index
 const root = ref<HTMLElement | null>(null)
 const lenis = ref<any>(null)
 
+// Provide
+provide('globalRoot', root)
+
 onMounted(() => {
 	lenis.value = new Lenis()
 
 	lenis.value.on('scroll', e => {
-		console.log(e)
+		// console.log(e)
 	})
 
 	function raf(time) {

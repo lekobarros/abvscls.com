@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { inject, ref, onMounted } from 'vue'
 import { chunk } from 'lodash'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
@@ -12,6 +12,7 @@ import horizontalItems from '@/src/data/horizontalSingle'
 
 // Data
 const root = ref(null)
+const globalRoot = inject('globalRoot')
 
 // eslint-disable-next-line no-undef
 const img = useImage()
@@ -32,51 +33,77 @@ const getItemsPath = chunkedPaths.map(chunk => {
 	})
 })
 
+const createHorizontalRow = (element, index, trigger) => {
+	const start = trigger.getBoundingClientRect().top + 128 * (index + 1)
+	const end = window.innerHeight + element.getBoundingClientRect().height
+	const cols = element.querySelectorAll('.horizontal-single__col')
+
+	const tl = gsap
+		.timeline({
+			scrollTrigger: {
+				trigger: trigger,
+				start: `${start}px top`,
+				end: `${end}px`,
+				scrub: true,
+				// pin: true,
+				anticipatePin: 1,
+				//markers: true,
+				// onUpdate: self => {
+				// 	console.log(`Section ${index} progress:`, self.progress)
+				// }
+			}
+		}).addLabel('start')
+		.to(element, {
+			x: index % 2 === 0 ? '-20vw' : '20vw',
+			duration: 1
+		})
+
+	cols.forEach((col) => {
+		tl.fromTo(
+			col,
+			{
+				autoAlpha: 0
+			},
+			{
+				autoAlpha: 1,
+				duration: 0.45,
+				stagger: 0.1
+			},
+			'start'
+		)
+	})
+}
+
 onMounted(() => {
-	const trigger = document.querySelector('c-main')
+	const trigger = globalRoot.value
 	const sections = document.querySelectorAll('.horizontal-single__row')
 
 	sections.forEach((section, index) => {
-		gsap.to(section, {
-			translateX: index % 2 === 0 ? '-20vw' : '20vw',
-			// ease: '',
-			scrollTrigger: {
-				trigger: trigger,
-				start: '128px top',
-				end: '100%',
-				scrub: true,
-				pin: true,
-				anticipatePin: 1,
-				markers: true,
-				onUpdate: self => {
-					console.log(`Section ${index} progress:`, self.progress)
-				}
-			}
-		})
+		createHorizontalRow(section, index, trigger, '128px top')
 	})
 })
 </script>
 
 <template>
   <div class="section horizontal-items" ref="root">
-      <div class="horizontal-single__row">
-        <div class="horizontal-single__col" v-for="({ backgroundImage, video }, key) in getItemsPath[0]" :key="`horizontal-single-row-1-item-${key}`">
-          <div class="horizontal-single__item">
-            <div class="horizontal-single__project" :style="{ ...(backgroundImage ? backgroundImage : null) }">
-              <video :src="video" autoplay loop muted playsinline v-if="video" />
-            </div>
+    <div class="horizontal-single__row">
+      <div class="horizontal-single__col" v-for="({ backgroundImage, video }, key) in getItemsPath[0]" :key="`horizontal-single-row-1-item-${key}`">
+        <div class="horizontal-single__item">
+          <div class="horizontal-single__project" :style="{ ...(backgroundImage ? backgroundImage : null) }">
+            <video :src="video" autoplay loop muted playsinline v-if="video" />
           </div>
         </div>
       </div>
-      <div class="horizontal-single__row">
-        <div class="horizontal-single__col" v-for="({ backgroundImage, video }, key) in getItemsPath[1]" :key="`horizontal-single-row-1-item-${key}`">
-          <div class="horizontal-single__item">
-            <div class="horizontal-single__project" :style="{ ...(backgroundImage ? backgroundImage : null) }">
-              <video :src="video" autoplay loop muted playsinline v-if="video" />
-            </div>
+    </div>
+    <div class="horizontal-single__row">
+      <div class="horizontal-single__col" v-for="({ backgroundImage, video }, key) in getItemsPath[1]" :key="`horizontal-single-row-1-item-${key}`">
+        <div class="horizontal-single__item">
+          <div class="horizontal-single__project" :style="{ ...(backgroundImage ? backgroundImage : null) }">
+            <video :src="video" autoplay loop muted playsinline v-if="video" />
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
