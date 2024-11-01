@@ -19,7 +19,7 @@ nuxtApp.hook('page:finish', () => {
   <div>
     <!-- Pre Loader -->
     <ThePreLoader />
-    <TheHeader />
+    <!-- <TheHeader /> -->
 
     <!-- Content -->
     <div id="app">
