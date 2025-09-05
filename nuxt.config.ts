@@ -28,8 +28,8 @@ export default defineNuxtConfig({
 
 	// Global CSS
 	css: [ 
-		'@/assets/css/main.css', 
-		'@/src/scss/main.scss' 
+		// '@/assets/css/main.css', 
+		// '@@/src/scss/main.scss' 
 	],
 
 	// Nuxt Modules
@@ -39,7 +39,7 @@ export default defineNuxtConfig({
 		'@nuxt/image', 
 		'@pinia/nuxt', 
 		'@nuxtjs/eslint-module', 
-		'@zadigetvoltaire/nuxt-gtm', 
+		// '@zadigetvoltaire/nuxt-gtm', 
 		'motion-v/nuxt', 
 		'@nuxt/icon'
 	],
@@ -48,9 +48,9 @@ export default defineNuxtConfig({
 		fonts: [ 'Satoshi' ]
 	},
 
-	gtm: {
-		id: process.env.GTM_TAG as string
-	},
+	// gtm: {
+	// 	id: process.env.GTM_TAG as string
+	// },
 
 	image: {
 		screens: {
@@ -77,12 +77,10 @@ export default defineNuxtConfig({
 			preprocessorOptions: {
 				scss: {
 					additionalData: `
-						@import "@/src/scss/_variables.scss";
-						@import "@/src/scss/_colors.scss";					`
+						@import "@@/src/scss/_variables.scss";
+						@import "@@/src/scss/_colors.scss";					`
 				}
 			}
 		}
 	},
-
-	compatibilityDate: '2024-10-19'
 })

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import gsap from '@/src/plugins/gsap'
-import useGlobalStore from '@/src/stores/global'
+import gsap from '@@/src/plugins/gsap'
+import useGlobalStore from '@@/src/stores/global'
 import { ref, onBeforeMount, onMounted } from 'vue'
 
 const randPhrases = [
@@ -89,49 +89,45 @@ const createLoadAnimation = (): void => {
 </script>
 
 <template>
-  <div :class="[$style.boxLoader, animationFinished && 'hidden']">
-    <!-- Generated Phartses -->
-    <div ref="pharses">
-      <div
-        v-for="(pharse, key) in generatedPharses"
-        :key="`box-loader-text-${key}`"
-        :class="$style.boxLoaderText"
-      >
-        {{ pharse }}
-      </div>
-    </div>
-    <!-- Background Delay -->
-    <div ref="backgroundColor" class="absolute z-50 inset-0 bg-woodsmoke-900" />
-  </div>
+	<div :class="[$style.boxLoader, animationFinished && 'hidden']">
+		<!-- Generated Phartses -->
+		<div ref="pharses">
+			<div v-for="(pharse, key) in generatedPharses" :key="`box-loader-text-${key}`" :class="$style.boxLoaderText">
+				{{ pharse }}
+			</div>
+		</div>
+		<!-- Background Delay -->
+		<div ref="backgroundColor" class="absolute z-50 inset-0 bg-woodsmoke-900" />
+	</div>
 </template>
 
 <style lang="scss" module>
 .boxLoader {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  color: $color-white;
-  z-index: 999;
-  pointer-events: none;
+	position: fixed;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	color: $color-white;
+	z-index: 999;
+	pointer-events: none;
 }
 
 .boxLoaderText {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 100;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  width: 100vw;
-  max-width: $breakpoint-screen-sm;
-  color: $color-white;
-  font-size: 3vh;
-  line-height: 1.25;
-  text-align: center;
-  opacity: 0;
-  transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 100;
+	padding-right: 1rem;
+	padding-left: 1rem;
+	width: 100vw;
+	max-width: $breakpoint-screen-sm;
+	color: $color-white;
+	font-size: 3vh;
+	line-height: 1.25;
+	text-align: center;
+	opacity: 0;
+	transform: translate(-50%, -50%);
 }
 </style>

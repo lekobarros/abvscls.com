@@ -2,8 +2,8 @@
 import { useNuxtApp } from '#app'
 import { onMounted, ref } from 'vue'
 
-import { LIST_SOCIAL_DATA } from '@/src/constants/social'
-import * as animations from '@/src/constants/animations'
+import { LIST_SOCIAL_DATA } from '@@/src/constants/social'
+import * as animations from '@@/src/constants/animations'
 
 // Composables
 import useHeroAnimations from '~/composables/useHeroAnimations'

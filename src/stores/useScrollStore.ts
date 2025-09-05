@@ -1,12 +1,16 @@
 import { defineStore } from 'pinia'
 
+interface SmootherLike {
+	scrollTo: (target: string) => void
+}
+
 export const useScrollStore = defineStore('scroll', {
 	state: () => ({
-		smoother: null as any,
+		smoother: null as SmootherLike | null,
 	}),
 
 	actions: {
-		setSmoother(instance: any) {
+		setSmoother(instance: SmootherLike) {
 			this.smoother = instance
 		},
 

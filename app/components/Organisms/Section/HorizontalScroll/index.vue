@@ -10,7 +10,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 // Components
-import horizontalItems from '@/src/data/horizontalSingle'
+import horizontalItems from '@@/src/data/horizontalSingle'
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const isGreaterOrEqualLarge = breakpoints.greaterOrEqual('lg')
@@ -28,94 +28,94 @@ const chunkedPaths = chunk(horizontalItems, horizontalItems.length / 2)
 
 // Mapping and generating CSS variables for each chunk
 const generateCSSPath = path => {
-	const imgUrl = img(path, { format: 'webp' })
-	return { backgroundImage: `url('${imgUrl}')` }
+  const imgUrl = img(path, { format: 'webp' })
+  return { backgroundImage: `url('${imgUrl}')` }
 }
 
 const getItemsPath = chunkedPaths.map(chunk => {
-	return chunk.map(({ backgroundImage, video }) => {
-		if (backgroundImage) return { backgroundImage: generateCSSPath(backgroundImage) }
-		else if (video) return { video }
-	})
+  return chunk.map(({ backgroundImage, video }) => {
+    if (backgroundImage) return { backgroundImage: generateCSSPath(backgroundImage) }
+    else if (video) return { video }
+  })
 })
 
 const createHorizontalRow = (elementss, index, trigger) => {
-	const elements = pinned.value.querySelectorAll('.horizontal-single__row')
-	// const elPinned = pinned.value.querySelector('.horizontal-items')
-	// const start = trigger.getBoundingClientRect().top + 128 * (index + 1)
-	// const cols = elements[0].querySelectorAll('.horizontal-single__col')
+  const elements = pinned.value.querySelectorAll('.horizontal-single__row')
+  // const elPinned = pinned.value.querySelector('.horizontal-items')
+  // const start = trigger.getBoundingClientRect().top + 128 * (index + 1)
+  // const cols = elements[0].querySelectorAll('.horizontal-single__col')
 
-	const tl = gsap
-		.timeline({
-			scrollTrigger: {
-				trigger: root.value,
-				start: () => '750px 80%',
-				end: '+=200% 30%',
-				scrub: 4,
-				pin: true,
-				pinSpacing: true,
-				markers: true
-			}
-		})
-		.addLabel('start')
+  const tl = gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: root.value,
+        start: () => '750px 80%',
+        end: '+=200% 30%',
+        scrub: 4,
+        pin: true,
+        pinSpacing: true,
+        markers: true
+      }
+    })
+    .addLabel('start')
 
-	// const tlOpacity = gsap
-	// 	.timeline({
-	// 		scrollTrigger: {
-	// 			id: 'opacity',
-	// 			trigger: trigger,
-	// 			start: () => 'top bottom',
-	// 			end: '15% 95%',
-	// 			scrub: 4,
-	// 			markers: true
-	// 		}
-	// 	})
-	// 	.addLabel('start')
+  // const tlOpacity = gsap
+  // 	.timeline({
+  // 		scrollTrigger: {
+  // 			id: 'opacity',
+  // 			trigger: trigger,
+  // 			start: () => 'top bottom',
+  // 			end: '15% 95%',
+  // 			scrub: 4,
+  // 			markers: true
+  // 		}
+  // 	})
+  // 	.addLabel('start')
 
-	// tl.to(
-	// 	elements[0],
-	// 	{
-	// 		x: '-20vw',
-	// 		duration: 1
-	// 	},
-	// 	'start'
-	// )
+  // tl.to(
+  // 	elements[0],
+  // 	{
+  // 		x: '-20vw',
+  // 		duration: 1
+  // 	},
+  // 	'start'
+  // )
 
-	tl.to(
-		elements,
-		{
-			x: index => (index % 2 ? '-15vw' : '15vw'),
-			duration: 1
-		},
-		'start'
-	)
+  tl.to(
+    elements,
+    {
+      x: index => (index % 2 ? '-15vw' : '15vw'),
+      duration: 1
+    },
+    'start'
+  )
 
-	// cols.forEach(col => {
-	// 	tlOpacity.fromTo(
-	// 		col,
-	// 		{
-	// 			autoAlpha: 0
-	// 		},
-	// 		{
-	// 			autoAlpha: 1,
-	// 			duration: 0.45,
-	// 			stagger: 0.1
-	// 		},
-	// 		'start'
-	// 	)
-	// })
+  // cols.forEach(col => {
+  // 	tlOpacity.fromTo(
+  // 		col,
+  // 		{
+  // 			autoAlpha: 0
+  // 		},
+  // 		{
+  // 			autoAlpha: 1,
+  // 			duration: 0.45,
+  // 			stagger: 0.1
+  // 		},
+  // 		'start'
+  // 	)
+  // })
 }
 
 onMounted(() => {
-	const trigger = root.value
-	// const sections = document.querySelectorAll('.horizontal-single__row')
+  const trigger = root.value
+  // const sections = document.querySelectorAll('.horizontal-single__row')
 
-	if (isGreaterOrEqualLarge.value) createHorizontalRow(null, null, trigger, '128px top')
+  if (isGreaterOrEqualLarge.value) createHorizontalRow(null, null, trigger, '128px top')
 })
 
 onUpdated(() => {
-	ScrollTrigger.refresh()
-	// .kill
+  ScrollTrigger.refresh()
+  // .kill
 })
 </script>
 
@@ -225,7 +225,7 @@ onUpdated(() => {
       width: 100%;
       height: 100%;
 
-      & > .horizontal-single__project {
+      &>.horizontal-single__project {
         position: absolute;
         inset: 0;
         height: 100%;
@@ -235,7 +235,7 @@ onUpdated(() => {
         background-size: cover;
         border-radius: 16px;
 
-        & > video {
+        &>video {
           position: absolute;
           inset: 0;
           height: 100%;

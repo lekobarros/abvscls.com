@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import useGlobalAnimations from '@/src/composables/useGlobalAnimations'
+// import useGlobalAnimations from '@@/src/composables/useGlobalAnimations'
 
 // Components
 import ThePreLoader from '@/components/layout/ThePreLoader/index.vue'
 import TheHeader from '@/components/layout/TheHeader/index.vue'
 
 // Composables
-useGlobalAnimations()
+// useGlobalAnimations()
 </script>
 
 <template>

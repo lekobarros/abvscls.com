@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 // Composables
 import useHeroAnimations from '~/composables/useHeroAnimations'
 
-import * as animations from '@/src/constants/animations'
+import * as animations from '@@/src/constants/animations'
 
 // General State
 const heroAnimations = useHeroAnimations()
@@ -14,19 +14,19 @@ const root = ref<HTMLElement | null>(null)
 
 // Hooks
 onMounted((): void => {
-	const { value: el } = root as { value: HTMLElement | null }
+  const { value: el } = root as { value: HTMLElement | null }
 
-	if (!el) return
+  if (!el) return
 
-	const children = [ 
-		el.querySelector('.c-hero__text-heading'), 
-		el.querySelector('.c-hero__text-subtitle') 
-	] as HTMLElement[]
+  const children = [
+    el.querySelector('.c-hero__text-heading'),
+    el.querySelector('.c-hero__text-subtitle')
+  ] as HTMLElement[]
 
-	const x = el.querySelector('div')
+  const x = el.querySelector('div')
 
-	heroAnimations.set(x, { opacity: 0, translateY: '15%', rotate: '3deg' })
-	heroAnimations.add(x, { stagger: 0 }, animations.HERO_START)
+  heroAnimations.set(x, { opacity: 0, translateY: '15%', rotate: '3deg' })
+  heroAnimations.add(x, { stagger: 0 }, animations.HERO_START)
 })
 </script>
 

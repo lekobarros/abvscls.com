@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 
-import * as animations from '@/src/constants/animations'
+import * as animations from '@@/src/constants/animations'
 
 // Composables
 import useHeroAnimations from '~/composables/useHeroAnimations'

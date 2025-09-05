@@ -3,18 +3,22 @@ import { useNuxtApp } from '#app'
 
 interface ScrollSmootherInstance {
 	kill: () => void
-	scrollTo: (target: string | number | Element, options?: any) => void
+	scrollTo: (target: string | number | Element, options?: Record<string, unknown>) => void
 	refresh: () => void
 }
 
 const smoother = ref<ScrollSmootherInstance | null>(null)
+
+interface ScrollSmootherStatic {
+	create: (options: Record<string, unknown>) => ScrollSmootherInstance
+}
 
 const useGlobalAnimations = () => {
 	const nuxtApp = useNuxtApp()
 
 	onMounted(() => {
 		const gsap = nuxtApp.$gsap
-		const ScrollSmoother = nuxtApp.$ScrollSmoother
+		const ScrollSmoother = nuxtApp.$ScrollSmoother as unknown as ScrollSmootherStatic
 		const ScrollTrigger = nuxtApp.$ScrollTrigger
 
 		if (!gsap || !ScrollSmoother || !ScrollTrigger) {

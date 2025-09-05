@@ -1,9 +1,10 @@
 import gsap from 'gsap'
 
-// Effects
+type NumberLike = number | string
+
 gsap.registerEffect({
 	name: 'textFadeIn',
-	effect: (targets: any, config: any) => {
+	effect: (targets: gsap.TweenTarget, config: { opacity: number; translateY: NumberLike; duration: number }) => {
 		return gsap.to(targets, {
 			startAt: { opacity: 0, translateY: '100%' },
 			opacity: config.opacity,
@@ -19,7 +20,7 @@ gsap.registerEffect({
 
 gsap.registerEffect({
 	name: 'textFadeOut',
-	effect: (targets: any, config: any) => {
+	effect: (targets: gsap.TweenTarget, config: { opacity: number; translateY: NumberLike; duration: number }) => {
 		return gsap.to(targets, {
 			opacity: config.opacity,
 			translateY: config.translateY,
@@ -34,7 +35,7 @@ gsap.registerEffect({
 
 gsap.registerEffect({
 	name: 'heroFadeIn',
-	effect: (targets: any, config: any) => {
+	effect: (targets: gsap.TweenTarget, config: { opacity: number; translateY: NumberLike; rotate: NumberLike; duration: number; delay: number; stagger: number }) => {
 		return gsap.to(targets, {
 			opacity: config.opacity,
 			translateY: config.translateY,
@@ -48,7 +49,5 @@ gsap.registerEffect({
 	defaults: { opacity: 1, translateY: 0, rotate: 0, duration: 0.8, delay: 0.1, stagger: 0.1 },
 	extendTimeline: true
 })
-
-
 
 export default gsap

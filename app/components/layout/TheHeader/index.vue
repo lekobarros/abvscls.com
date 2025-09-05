@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import gsap from '@/src/plugins/gsap'
-import useGlobalStore from '@/src/stores/global'
+import gsap from '@@/src/plugins/gsap'
+import useGlobalStore from '@@/src/stores/global'
 import { ref, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 
@@ -10,39 +10,41 @@ const { isLoaded } = storeToRefs(globalStore)
 const root = ref<HTMLElement | null>(null)
 
 watch(isLoaded, newVal => {
-	if (newVal) createHeroAnimation()
+  if (newVal) createHeroAnimation()
 })
 
 onMounted((): void => {
-	if (!globalStore.isLoaded) doResetAnimation()
+  if (!globalStore.isLoaded) doResetAnimation()
 })
 
 // Methods
 const createHeroAnimation = (): void => {
-	const tl = gsap.timeline({ paused: !0 })
-	const query = gsap.utils.selector(root.value)
-	const children = [query('.c-nav-logo-text'), query('.c-nav-button')]
+  const tl = gsap.timeline({ paused: !0 })
+  const query = gsap.utils.selector(root.value)
+  const children = [query('.c-nav-logo-text'), query('.c-nav-button')]
 
-	// Start Timeline
-	tl.addLabel('start', '>')
-	tl.heroFadeIn(children, {}, 'start+=0.05')
+  // Start Timeline
+  tl.addLabel('start', '>')
+  tl.heroFadeIn(children, {}, 'start+=0.05')
 
-	tl.play()
+  tl.play()
 }
 
 const doResetAnimation = (): void => {
-	const query = gsap.utils.selector(root.value)
-	const children = [query('.c-nav-logo-text'), query('.c-nav-button')]
+  const query = gsap.utils.selector(root.value)
+  const children = [query('.c-nav-logo-text'), query('.c-nav-button')]
 
-	gsap.set(children, { opacity: 0, translateY: '15%', rotate: '1deg' })
+  gsap.set(children, { opacity: 0, translateY: '15%', rotate: '1deg' })
 }
 </script>
 
 <template>
-  <header class="c-nav" ref="root">
+  <header ref="root" class="c-nav">
     <nav class="c-nav-container">
       <!-- Home Link -->
-      <NuxtLink to="/" class="c-nav-logo-text">abvscls</NuxtLink>
+      <NuxtLink to="/" class="c-nav-logo-text">
+        abvscls
+      </NuxtLink>
       <!-- Redirect: Linkedin -->
       <a href="https://www.linkedin.com/in/lekobarros/" target="_blank" class="c-nav-button">
         <div class="c-nav-button-emoji" aria-label="Say Hello">👋</div>
@@ -112,10 +114,6 @@ const doResetAnimation = (): void => {
   border: 1.5px solid rgba(0, 0, 0, 0.1);
   border-radius: 9999px;
   overflow: hidden;
-
-  &:hover .c-nav-button-emoji {
-    // animation: rotate90Deg 2s cubic-bezier(0.76, 0, 0.24, 1) 1; // easeInOutQuart
-  }
 }
 
 .c-nav-button-emoji {
@@ -133,9 +131,11 @@ const doResetAnimation = (): void => {
   25% {
     transform: rotate(90deg);
   }
+
   75% {
     transform: rotate(-90deg);
   }
+
   100% {
     transform: rotate(0deg);
   }
