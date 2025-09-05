@@ -1,30 +1,45 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import useOrganismHeroStore from './useAnimation'
+
+// Composables
+import useHeroAnimations from '~/composables/useHeroAnimations'
+
 import * as animations from '@/src/constants/animations'
 
 // General State
-const heroStore = useOrganismHeroStore()
+const heroAnimations = useHeroAnimations()
+
+// const heroStore = useOrganismHeroStore()
 const root = ref<HTMLElement | null>(null)
 
 // Hooks
 onMounted((): void => {
 	const { value: el } = root as { value: HTMLElement | null }
-	const { tl } = heroStore
 
-	if (!el || !tl) return console.warn('Element or timeline not found')
-	else if (heroStore.isFinished) return
+	if (!el) return
 
-	const children = [el.querySelector('.c-hero__text-heading'), el.querySelector('.c-hero__text-subtitle')] as HTMLElement[]
-	heroStore.set(children, { opacity: 0, translateY: '15%', rotate: '1deg' })
-	heroStore.add(children, { stagger: 0.1, delay: 0.1 }, animations.HERO_START)
+	const children = [ 
+		el.querySelector('.c-hero__text-heading'), 
+		el.querySelector('.c-hero__text-subtitle') 
+	] as HTMLElement[]
+
+	const x = el.querySelector('div')
+
+	heroAnimations.set(x, { opacity: 0, translateY: '15%', rotate: '3deg' })
+	heroAnimations.add(x, { stagger: 0 }, animations.HERO_START)
 })
 </script>
 
 <template>
-  <div class="c-hero__text space-y-4 md:space-y-0" ref="root">
-    <h1 class="c-hero__text-heading">A Front-end Engineer <span class="md:block">based BH, BR.</span></h1>
-    <p class="c-hero__text-subtitle">Developing and specialize in creating visually appealing and highly functional websites and Single Page Applications (SPAs).</p>
+  <div ref="root" class="c-hero__text space-y-4 md:space-y-0">
+    <div class="flex flex-col gap-4 md:gap-6">
+      <h1 class="c-hero__text-heading">
+        A Front-end Engineer <span class="md:block">based BH, BR.</span>
+      </h1>
+      <p class="c-hero__text-subtitle">
+        Developing and specialize in creating visually appealing and highly functional websites and Single Page Applications (SPAs).
+      </p>
+    </div>
   </div>
 </template>
 
@@ -35,13 +50,6 @@ onMounted((): void => {
 
   @media screen and (max-width: $breakpoint-screen-lg) {
     order: 2;
-  }
-
-  @media screen and (min-width: $breakpoint-screen-md) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 1.25rem;
   }
 
   @media screen and (min-width: $breakpoint-screen-lg) {

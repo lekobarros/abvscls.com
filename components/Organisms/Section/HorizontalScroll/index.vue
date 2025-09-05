@@ -2,6 +2,7 @@
 import { ref, useTemplateRef, onMounted, onUpdated } from 'vue'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import { chunk } from 'lodash'
+
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 

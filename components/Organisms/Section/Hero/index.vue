@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-import { watch, onBeforeMount } from 'vue'
-import { storeToRefs } from 'pinia'
-import useGlobalStore from '@/src/store/global'
-import useOrganismHeroStore from './useAnimation'
+import { onBeforeMount, onMounted } from 'vue'
+
+// Composables
+import useHeroAnimations from '~/composables/useHeroAnimations'
 
 // General State
-const globalStore = useGlobalStore()
-const heroStore = useOrganismHeroStore()
-const { isLoaded } = storeToRefs(globalStore)
+const heroAnimations = useHeroAnimations()
+const root = ref<HTMLElement | null>(null)
 
 // Components
 import TheHeroText from './TheHeroText.vue'
@@ -15,25 +14,22 @@ import TheHeroPicture from './TheHeroPicture.vue'
 import TheHeroSpinner from './TheHeroSpinner.vue'
 import TheHeroContact from './TheHeroContact.vue'
 
-// Watch
-watch(isLoaded, newVal => {
-	if (newVal) heroStore.doPlayTimeline()
-})
-
 // Hooks
 onBeforeMount((): void => {
-	const { tl } = heroStore
-	if (!isLoaded.value && !tl) heroStore.createTimeline()
+  if (!heroAnimations.timeline) heroAnimations.createTimeline()
+})
+
+onMounted((): void => {
+  heroAnimations.start()
 })
 </script>
 
 <template>
-  <div class="section-hero" data-scroll-section>
+  <div class="section-hero">
     <div class="c-container">
       <div class="c-hero">
         <TheHeroText />
         <TheHeroPicture />
-        <TheHeroSpinner />
         <TheHeroContact />
       </div>
     </div>

@@ -1,35 +1,41 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useNuxtApp } from '#app'
-import { useScrollStore } from '@/src/stores/useScrollStore'
 
 interface ScrollSmootherInstance {
-  kill: () => void
-  scrollTo: (target: string | number | Element, options?: any) => void
-  refresh: () => void
+	kill: () => void
+	scrollTo: (target: string | number | Element, options?: any) => void
+	refresh: () => void
 }
 
-// Ref global singleton
 const smoother = ref<ScrollSmootherInstance | null>(null)
 
 const useGlobalAnimations = () => {
 	const nuxtApp = useNuxtApp()
-	const scrollStore = useScrollStore()
 
 	onMounted(() => {
 		const gsap = nuxtApp.$gsap
-		const ScrollSmoother = nuxtApp.$ScrollSmoother as any
+		const ScrollSmoother = nuxtApp.$ScrollSmoother
+		const ScrollTrigger = nuxtApp.$ScrollTrigger
 
-		if (gsap && ScrollSmoother && typeof ScrollSmoother.create === 'function') {
-			if (!smoother.value) {
-				smoother.value = ScrollSmoother.create({
-					wrapper: '#__nuxt',
-					content: '#content',
-					smooth: 1.2,
-					effects: true
-				})
+		if (!gsap || !ScrollSmoother || !ScrollTrigger) {
+			console.warn('GSAP, ScrollSmoother, or ScrollTrigger not available')
+			return
+		}
 
-				scrollStore.setSmoother(smoother.value)
-			}
+		try {
+			// Initialize ScrollSmoother
+			smoother.value = ScrollSmoother.create({
+				wrapper: '#smooth-wrapper',
+				content: '#smooth-content',
+				smooth: 1.2,
+				effects: true,
+				smoothTouch: 0.1,
+				normalizeScroll: true
+			}) as ScrollSmootherInstance
+
+			console.log('ScrollSmoother initialized successfully')
+		} catch (error) {
+			console.error('Error initializing ScrollSmoother:', error)
 		}
 	})
 
@@ -37,7 +43,6 @@ const useGlobalAnimations = () => {
 		if (smoother.value) {
 			smoother.value.kill()
 			smoother.value = null
-			scrollStore.clearSmoother()
 		}
 	})
 

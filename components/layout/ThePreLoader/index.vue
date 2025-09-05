@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import gsap from '@/src/plugins/gsap'
-import useGlobalStore from '@/src/store/global'
+import useGlobalStore from '@/src/stores/global'
 import { ref, onBeforeMount, onMounted } from 'vue'
 
 const randPhrases = [
@@ -92,12 +92,16 @@ const createLoadAnimation = (): void => {
   <div :class="[$style.boxLoader, animationFinished && 'hidden']">
     <!-- Generated Phartses -->
     <div ref="pharses">
-      <div :class="$style.boxLoaderText" v-for="(pharse, key) in generatedPharses" :key="`box-loader-text-${key}`">
+      <div
+        v-for="(pharse, key) in generatedPharses"
+        :key="`box-loader-text-${key}`"
+        :class="$style.boxLoaderText"
+      >
         {{ pharse }}
       </div>
     </div>
     <!-- Background Delay -->
-    <div class="absolute z-50 inset-0 bg-woodsmoke-900" ref="backgroundColor" />
+    <div ref="backgroundColor" class="absolute z-50 inset-0 bg-woodsmoke-900" />
   </div>
 </template>
 

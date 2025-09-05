@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import gsap from '@/src/plugins/gsap'
-import useGlobalStore from '@/src/store/global'
+import useGlobalStore from '@/src/stores/global'
 import { ref, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 

@@ -31,8 +31,14 @@ onMounted((): void => {
 </script>
 
 <template>
-  <div :class="computedClassList" ref="root" >
-    <NuxtImg src="/img/spinner.svg" format="webp" width="265" height="265" alt="spinner circle nonsense words - kill off the average - mediocrity is way boring" />
+  <div ref="root" :class="computedClassList">
+    <nuxt-img
+      src="/img/spinner.svg"
+      format="webp"
+      width="265"
+      height="265"
+      alt="spinner circle nonsense words - kill off the average - mediocrity is way boring"
+    />
   </div>
 </template>
 

@@ -1,30 +1,24 @@
-<script lang="ts" setup>
-import useGlobalStore from '@/src/store/global'
+<script setup lang="ts">
+import useGlobalAnimations from '@/src/composables/useGlobalAnimations'
 
 // Components
 import ThePreLoader from '@/components/layout/ThePreLoader/index.vue'
 import TheHeader from '@/components/layout/TheHeader/index.vue'
 
-// General State
-const globalStore = useGlobalStore()
-const nuxtApp = useNuxtApp()
-
-// Nuxt Hooks
-nuxtApp.hook('page:finish', () => {
-	window.scrollTo(0, 0)
-})
+// Composables
+useGlobalAnimations()
 </script>
 
 <template>
-  <div>
-    <!-- Pre Loader -->
-    <ThePreLoader />
-    <!-- <TheHeader /> -->
-
-    <!-- Content -->
-    <div id="app">
-      <NuxtPage />
+  <div id="app">
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <nuxt-page />
+      </div>
     </div>
+
+    <the-header />
+    <!-- <the-pre-loader /> -->
   </div>
 </template>
 
