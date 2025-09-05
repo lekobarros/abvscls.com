@@ -6,7 +6,7 @@
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:vue/vue3-essential"
+        "plugin:vue/vue3-recommended"
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -18,6 +18,10 @@
         "vue"
     ],
     "rules": {
+        "array-bracket-spacing": [
+            "error",
+            "always"
+        ],
         "indent": [
             "error",
             "tab"
@@ -33,6 +37,42 @@
         "semi": [
             "error",
             "never"
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 240
+            }
+        ],
+        "vue/max-len": [
+            "error",
+            {
+                "code": 240,
+                "template": 140,
+                "tabWidth": 2,
+                "comments": 140,
+                "ignorePattern": "",
+                "ignoreComments": false,
+                "ignoreTrailingComments": false,
+                "ignoreUrls": true,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreRegExpLiterals": true
+            }
+        ],
+        "vue/first-attribute-linebreak": [
+            "error",
+            {
+                "singleline": "beside",
+                "multiline": "below"
+            }
+        ],
+        "vue/max-attributes-per-line": [
+            "error",
+            {
+                "singleline": 2,
+                "multiline": 1
+            }
         ]
     }
 }
