@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	ssr: false,
-	devtools: { 
-		enabled: false 
+	devtools: {
+		enabled: false
 	},
 	app: {
 		head: {
@@ -27,25 +27,26 @@ export default defineNuxtConfig({
 	},
 
 	// Global CSS
-	css: [ 
-		// '@/assets/css/main.css', 
-		// '@@/src/scss/main.scss' 
+	css: [
+		'@@/app/assets/css/main.css',
+		'@@/src/scss/main.scss'
 	],
 
 	// Nuxt Modules
 	modules: [
-		'@vueuse/nuxt', 
-		'@nuxtjs/fontaine', 
-		'@nuxt/image', 
-		'@pinia/nuxt', 
-		'@nuxtjs/eslint-module', 
-		// '@zadigetvoltaire/nuxt-gtm', 
-		'motion-v/nuxt', 
-		'@nuxt/icon'
+		'@vueuse/nuxt',
+		'@nuxtjs/fontaine',
+		'@nuxt/image',
+		'@pinia/nuxt',
+		'@nuxtjs/eslint-module',
+		// '@zadigetvoltaire/nuxt-gtm',
+		'motion-v/nuxt',
+		'@nuxt/icon',
+		'@nuxtjs/tailwindcss'
 	],
 
 	fontMetrics: {
-		fonts: [ 'Satoshi' ]
+		fonts: ['Satoshi']
 	},
 
 	// gtm: {
@@ -78,7 +79,7 @@ export default defineNuxtConfig({
 				scss: {
 					additionalData: `
 						@import "@@/src/scss/_variables.scss";
-						@import "@@/src/scss/_colors.scss";					`
+						@import "@@/src/scss/_colors.scss";`
 				}
 			}
 		}
