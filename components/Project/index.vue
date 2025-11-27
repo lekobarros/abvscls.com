@@ -43,7 +43,6 @@
   </section>
 </template>
 
-
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import projects from '@/src/data/projects'

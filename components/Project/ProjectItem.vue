@@ -8,8 +8,8 @@ const props = defineProps<{
   id: string | number
   title: string
   subtitle?: string | null
-  description: string
-  date?: string | null
+  description: string,
+  date?: string | null,
   url?: string | null
   color: Color
 }>()
