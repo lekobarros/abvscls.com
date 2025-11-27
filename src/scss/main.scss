@@ -1,2 +1,13 @@
-@import '_fonts.scss';
-@import '_general.scss';
+@import "_fonts.scss";
+@import "_general.scss";
+@import "_animations.scss";
+@import "node_modules/locomotive-scroll/dist/locomotive-scroll.css";
+
+#app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  color: $color-woodsmoke-950;
+  background-color: $color-white;
+  overflow: hidden;
+}

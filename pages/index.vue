@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import { ref, onMounted } from 'vue'
+// import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+
 import Lenis from '@studio-freight/lenis'
-import { onMounted } from 'vue'
+// import LocomotiveScroll from 'locomotive-scroll'
 
 // Components
-import TheHero from '@/components/Hero/index.vue'
+import TheOrganismHero from '@/components/Organisms/Section/Hero/index.vue'
 import TheProject from '@/components/Project/index.vue'
 
 // Off
@@ -25,8 +28,16 @@ useHead({
 </script>
 
 <template>
-  <div>
-    <TheHero />
+  <main class="c-main">
+    <TheOrganismHero />
 		<TheProject />
-  </div>
+	</main>
 </template>
+
+<style lang="scss">
+.c-main {
+	position: relative;
+	padding-top: 6.5rem;
+	width: 100vw;
+}
+</style>

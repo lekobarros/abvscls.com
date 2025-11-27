@@ -19,7 +19,7 @@ onMounted((): void => {
 
 // Methods
 const createHeroAnimation = (): void => {
-	const tl: GSAPTimeline = gsap.timeline({ paused: !0 })
+	const tl = gsap.timeline({ paused: !0 })
 	const query = gsap.utils.selector(root.value)
 	const children = [query('.c-nav-logo-text'), query('.c-nav-button')]
 

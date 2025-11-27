@@ -27,7 +27,7 @@ const onMouseEnter = (): void => {
 </script>
 
 <template>
-  <div class="c-work" @mouseenter="onMouseEnter">
+  <div class="c-work" :id="`c-project-${props.id}`" @mouseenter="onMouseEnter">
     <div class="c-work-bg" />
     <div class="c-container">
       <div class="c-work-wrap">
@@ -57,11 +57,12 @@ const onMouseEnter = (): void => {
   padding: 2rem 0;
   padding-top: 1rem;
   padding-bottom: 1.5rem;
-  transition: all 800ms cubic-bezier(0.86, 0, 0.07, 1);
+  height: 16rem;
+  transition: all 0.8s cubic-bezier(0.86, 0, 0.07, 1);
 
   &:hover {
-    padding-top: 2.25rem;
-    padding-bottom: 2.25rem;
+    padding-top: 2.5rem;
+    // padding-bottom: 2.25rem;
     color: $color-white;
   }
 
@@ -89,15 +90,16 @@ const onMouseEnter = (): void => {
   position: relative;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto auto;
+  grid-template-rows: auto;
   gap: 1rem;
   width: 100%;
+  height: 16rem;
 }
 
 .c-work-heading {
   grid-area: span 1 / span 4 / span 1 / span 3;
-  align-self: center;
-  justify-self: start;
+  // align-self: center;
+  // justify-self: start;
 
   @media screen and (min-width: $breakpoint-screen-xl) {
     grid-area: span 1 / span 3 / span 1 / span 3;
@@ -115,7 +117,7 @@ const onMouseEnter = (): void => {
 }
 
 .c-work-node {
-  grid-area: 1 / 9 / 2 / 13;
+  grid-area: 1 / 9 / 1 / 13;
   display: flex;
   flex-direction: column;
   gap: 1rem;
