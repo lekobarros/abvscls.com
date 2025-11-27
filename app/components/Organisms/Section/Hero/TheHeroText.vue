@@ -44,6 +44,8 @@ onMounted((): void => {
 </template>
 
 <style lang="scss">
+@use '@@/src/scss/variables' as *;
+
 .c-hero__text {
   position: relative;
   z-index: 20;

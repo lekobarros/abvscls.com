@@ -77,9 +77,8 @@ export default defineNuxtConfig({
 								css: {
 												preprocessorOptions: {
 																scss: {
-																				additionalData: `
-																								@import "@@/src/scss/_variables.scss";
-																								@import "@@/src/scss/_colors.scss";`
+																				// Modern Sass: use @use in component files instead of additionalData
+																				api: 'modern-compiler'
 																}
 												}
 								}

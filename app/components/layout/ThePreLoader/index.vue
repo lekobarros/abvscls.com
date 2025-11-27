@@ -102,6 +102,9 @@ const createLoadAnimation = (): void => {
 </template>
 
 <style lang="scss" module>
+@use '@@/src/scss/variables' as *;
+@use '@@/src/scss/colors' as *;
+
 .boxLoader {
 	position: fixed;
 	inset: 0;

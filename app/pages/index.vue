@@ -10,6 +10,8 @@ import TheOrganismHero from '@/components/Organisms/Section/Hero/index.vue'
 </template>
 
 <style lang="scss">
+@use '@@/src/scss/variables' as *;
+
 .c-main {
   position: relative;
   padding-top: 6.5rem;

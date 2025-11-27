@@ -37,6 +37,8 @@ onMounted((): void => {
 </template>
 
 <style lang="scss">
+@use '@@/src/scss/variables' as *;
+
 .c-hero__spinner {
   position: absolute;
   z-index: 10;

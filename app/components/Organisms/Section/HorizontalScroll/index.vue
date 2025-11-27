@@ -145,6 +145,8 @@ onUpdated(() => {
 </template>
 
 <style lang="scss" scoped>
+@use '@@/src/scss/variables' as *;
+
 // .horizontal-items {
 //   .horizontal-single__row {
 //     position: relative;

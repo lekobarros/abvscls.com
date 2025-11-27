@@ -133,6 +133,8 @@ const onMoveMouse = (event: MouseEvent) => {
 </script>
 
 <style lang="scss">
+@use '@@/src/scss/variables' as *;
+
 .c-works-grid {
   position: relative;
   display: grid;

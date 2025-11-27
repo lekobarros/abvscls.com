@@ -36,7 +36,8 @@ onMounted((): void => {
 </template>
 
 <style lang="scss" scoped>
-@use '@/assets/scss/_breakpoints.scss' as breakpoints;
+@use '@@/src/scss/variables' as *;
+@use '@@/src/scss/colors' as *;
 
 .section-hero {
   position: relative;

@@ -1,6 +1,8 @@
-@import "_fonts.scss";
-@import "_general.scss";
-@import "_animations.scss";
+@use 'fonts';
+@use 'general';
+@use 'animations';
+@use 'variables' as *;
+@use 'colors' as *;
 
 #app {
   position: relative;

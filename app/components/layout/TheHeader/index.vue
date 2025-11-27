@@ -55,6 +55,8 @@ const doResetAnimation = (): void => {
 </template>
 
 <style lang="scss">
+@use '@@/src/scss/variables' as *;
+
 .c-nav {
   position: absolute;
   z-index: 100;

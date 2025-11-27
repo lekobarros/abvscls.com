@@ -12,6 +12,8 @@ const props = defineProps<{
 </script>
 
 <style lang="scss">
+@use '@@/src/scss/colors' as *;
+
 .c-button {
   background-color: white;
   color: $color-woodsmoke-default;

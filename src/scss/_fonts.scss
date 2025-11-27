@@ -1,5 +1,5 @@
-@import '_mixin.scss';
+@use 'mixin';
 
-@include font-face("Satoshi", /fonts/Satoshi/Satoshi-Regular, 400, normal, woff2 woff);
-@include font-face("Satoshi", /fonts/Satoshi/Satoshi-Medium, 500, normal, woff2 woff);
-@include font-face("Satoshi", /fonts/Satoshi/Satoshi-Bold, 700, normal, woff2 woff);
+@include mixin.font-face("Satoshi", /fonts/Satoshi/Satoshi-Regular, 400, normal, woff2 woff);
+@include mixin.font-face("Satoshi", /fonts/Satoshi/Satoshi-Medium, 500, normal, woff2 woff);
+@include mixin.font-face("Satoshi", /fonts/Satoshi/Satoshi-Bold, 700, normal, woff2 woff);

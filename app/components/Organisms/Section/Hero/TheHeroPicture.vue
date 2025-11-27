@@ -30,6 +30,8 @@ onMounted((): void => {
 </template>
 
 <style lang="scss">
+@use '@@/src/scss/variables' as *;
+
 .c-hero__picture {
   position: relative;
   z-index: 0;
