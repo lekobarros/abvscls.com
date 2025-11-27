@@ -1,10 +1,10 @@
 ## Project Overview
 - This project is a web application for a personal portfolio, with a focus on SEO and publishing posts to improve online visibility.
-- The application is built with Nuxt 3 (using Vue.js, Composition API, and <script setup>) and TypeScript, following a Modular, Feature-Based architecture.
+- The application is built with Nuxt 4 (using Vue.js, Composition API, and <script setup>) and TypeScript, following a Modular, Feature-Based architecture.
 - State management is handled with Pinia. Animations are built with the GSAP framework, including ScrollTrigger and ScrollSmoother.
 
 ## 📂 Folder Structure
-- The project structure follows Nuxt 3 conventions (with plans to migrate to Nuxt 4), adapted for a Modular, Feature-Based architecture.
+- The project structure follows Nuxt 4 conventions, adapted for a Modular, Feature-Based architecture.
 - **assets/:** Contains uncompiled assets such as fonts, icons, and global stylesheets.
 - **components/:** Contains global and reusable UI components (e.g., BaseButton.vue, TheHeader.vue). They are auto-imported by Nuxt.
 - **composables/:** Contains global Vue composables (e.g., useMetadata.ts). They are auto-imported.
