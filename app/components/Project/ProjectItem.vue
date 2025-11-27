@@ -15,7 +15,7 @@ const props = defineProps<{
 }>()
 
 // Components
-import CButton from '@/components/Button/index.vue'
+import CButton from '~/components/Button/index.vue'
 
 // General State
 const emit = defineEmits([ 'onProjectEnter' ])
@@ -55,8 +55,8 @@ const onMouseEnter = (): void => {
 </template>
 
 <style lang="scss">
-@use '@@/src/scss/variables' as *;
-@use '@@/src/scss/colors' as *;
+@use '~/assets/scss/variables' as *;
+@use '~/assets/scss/colors' as *;
 
 .c-work {
   position: relative;

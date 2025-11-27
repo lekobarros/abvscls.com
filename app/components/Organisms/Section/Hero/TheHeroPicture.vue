@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 
-import * as animations from '@@/src/constants/animations'
+import * as animations from '~/constants/animations'
 
 // Composables
 import useHeroAnimations from '~/composables/useHeroAnimations'
@@ -36,7 +36,7 @@ onMounted((): void => {
 </template>
 
 <style lang="scss">
-@use '@@/src/scss/variables' as *;
+@use '~/assets/scss/variables' as *;
 
 .c-hero__picture {
   position: relative;

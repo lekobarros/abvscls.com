@@ -2,8 +2,8 @@
 import { useNuxtApp } from '#app'
 import { onMounted, ref } from 'vue'
 
-import { LIST_SOCIAL_DATA } from '@@/src/constants/social'
-import * as animations from '@@/src/constants/animations'
+import { LIST_SOCIAL_DATA } from '~/constants/social'
+import * as animations from '~/constants/animations'
 
 // Composables
 import useHeroAnimations from '~/composables/useHeroAnimations'
@@ -70,8 +70,8 @@ onMounted((): void => {
 </template>
 
 <style lang="scss">
-@use '@@/src/scss/variables' as *;
-@use '@@/src/scss/colors' as *;
+@use '~/assets/scss/variables' as *;
+@use '~/assets/scss/colors' as *;
 
 .c-hero__contact {
   position: relative;

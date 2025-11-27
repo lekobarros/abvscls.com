@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import gsap from '@@/src/plugins/gsap'
-import useGlobalStore from '@@/src/stores/global'
+import { useNuxtApp } from '#app'
+import useGlobalStore from '~/store/global'
 import { ref, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 
 // General State
+const nuxtApp = useNuxtApp()
+const gsap = nuxtApp.$gsap as typeof import('gsap').gsap
 const globalStore = useGlobalStore()
 const { isLoaded } = storeToRefs(globalStore)
 const root = ref<HTMLElement | null>(null)
@@ -58,7 +60,7 @@ const doResetAnimation = (): void => {
 </template>
 
 <style lang="scss">
-@use '@@/src/scss/variables' as *;
+@use '~/assets/scss/variables' as *;
 
 .c-nav {
   position: absolute;

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue'
 import useOrganismHeroStore from './useAnimation'
-import * as animations from '@@/src/constants/animations'
+import * as animations from '~/constants/animations'
 
 // General State
 const heroStore = useOrganismHeroStore()
@@ -42,7 +42,7 @@ onMounted((): void => {
 </template>
 
 <style lang="scss">
-@use '@@/src/scss/variables' as *;
+@use '~/assets/scss/variables' as *;
 
 .c-hero__spinner {
   position: absolute;

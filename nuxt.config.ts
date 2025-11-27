@@ -28,8 +28,8 @@ export default defineNuxtConfig({
 
 	// Global CSS
 	css: [
-		'@@/app/assets/css/main.css',
-		'@@/src/scss/main.scss'
+		'~/assets/css/main.css',
+		'~/assets/scss/main.scss'
 	],
 
 	// Nuxt Modules

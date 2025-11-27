@@ -1,17 +1,18 @@
 <script lang="ts" setup>
-import { onBeforeMount, onMounted, ref } from 'vue'
+import { onBeforeMount, onMounted } from 'vue'
 
 // Composables
-import useHeroAnimations from './composables/useHeroAnimations'
+import useHeroAnimations from '~/composables/useHeroAnimations'
 
 // General State
 const heroAnimations = useHeroAnimations()
 const root = ref<HTMLElement | null>(null)
 
 // Components
-import HeroText from './components/HeroText.vue'
-import HeroPicture from './components/HeroPicture.vue'
-import HeroContact from './components/HeroContact.vue'
+import TheHeroText from './TheHeroText.vue'
+import TheHeroPicture from './TheHeroPicture.vue'
+import TheHeroSpinner from './TheHeroSpinner.vue'
+import TheHeroContact from './TheHeroContact.vue'
 
 // Hooks
 onBeforeMount((): void => {
@@ -24,20 +25,20 @@ onMounted((): void => {
 </script>
 
 <template>
-	<div class="section-hero" ref="root">
+	<div class="section-hero">
 		<div class="c-container">
 			<div class="c-hero">
-				<hero-text />
-				<hero-picture />
-				<hero-contact />
+				<the-hero-text />
+				<the-hero-picture />
+				<the-hero-contact />
 			</div>
 		</div>
 	</div>
 </template>
 
-<style lang="scss" scoped>
-@use '@@/src/scss/variables' as *;
-@use '@@/src/scss/colors' as *;
+<style lang="scss">
+@use '~/assets/scss/variables' as *;
+@use '~/assets/scss/colors' as *;
 
 .section-hero {
   position: relative;
@@ -45,16 +46,16 @@ onMounted((): void => {
   background-color: $color-white;
   color: $color-woodsmoke-default;
 
-  @include breakpoints.up("lg") {
+  @media screen and (min-width: $breakpoint-screen-lg) {
     padding-bottom: 8rem;
     height: calc(100svh - 6.5rem);
   }
 
-  @include breakpoints("xl") {
+  @media screen and (min-width: $breakpoint-screen-xl) {
     padding-bottom: 6rem;
   }
 
-  @include breakpoints.up("2xl") {
+  @media screen and (min-width: $breakpoint-screen-3xl) {
     padding-bottom: 12rem;
   }
 }
@@ -69,7 +70,7 @@ onMounted((): void => {
   flex-direction: column;
   gap: 1.5rem;
 
-  @include breakpoint.up("lg") {
+  @media screen and (min-width: $breakpoint-screen-lg) {
     display: grid;
     grid-template-rows: repeat(12, minmax(0, 1fr));
     grid-template-columns: repeat(2, 4rem) repeat(10, minmax(0, 1fr));

@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 // Composables
 import useHeroAnimations from '~/composables/useHeroAnimations'
 
-import * as animations from '@@/src/constants/animations'
+import * as animations from '~/constants/animations'
 
 // General State
 const heroAnimations = useHeroAnimations()
@@ -44,7 +44,7 @@ onMounted((): void => {
 </template>
 
 <style lang="scss">
-@use '@@/src/scss/variables' as *;
+@use '~/assets/scss/variables' as *;
 
 .c-hero__text {
   position: relative;

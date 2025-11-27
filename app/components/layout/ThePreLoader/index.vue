@@ -1,7 +1,10 @@
 <script lang="ts" setup>
-import gsap from '@@/src/plugins/gsap'
-import useGlobalStore from '@@/src/stores/global'
+import { useNuxtApp } from '#app'
+import useGlobalStore from '~/store/global'
 import { ref, onBeforeMount, onMounted } from 'vue'
+
+const nuxtApp = useNuxtApp()
+const gsap = nuxtApp.$gsap as typeof import('gsap').gsap
 
 const randPhrases = [
 	'Building user-friendly interfaces for web applications',
@@ -105,8 +108,8 @@ const createLoadAnimation = (): void => {
 </template>
 
 <style lang="scss" module>
-@use '@@/src/scss/variables' as *;
-@use '@@/src/scss/colors' as *;
+@use '~/assets/scss/variables' as *;
+@use '~/assets/scss/colors' as *;
 
 .boxLoader {
 	position: fixed;

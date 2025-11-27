@@ -10,7 +10,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 // Components
-import horizontalItems from '@@/src/data/horizontalSingle'
+import horizontalItems from '~/data/horizontalSingle'
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const isGreaterOrEqualLarge = breakpoints.greaterOrEqual('lg')
@@ -163,7 +163,7 @@ onUpdated(() => {
 </template>
 
 <style lang="scss" scoped>
-@use '@@/src/scss/variables' as *;
+@use '~/assets/scss/variables' as *;
 
 // .horizontal-items {
 //   .horizontal-single__row {

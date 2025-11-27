@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import projects from '@@/src/data/projects'
+import projects from '~/data/projects'
 import gsap from 'gsap'
 
 // Components
@@ -122,7 +122,7 @@ const onMoveMouse = (event: MouseEvent) => {
 				:description="item.short_description"
 				:date="item.years"
 				:url="item.url"
-:color="item.color"
+				:color="item.color"
 				@mousemove="onMoveMouse"
 			/>
 		</div>
@@ -152,7 +152,7 @@ const onMoveMouse = (event: MouseEvent) => {
 </template>
 
 <style lang="scss">
-@use '@@/src/scss/variables' as *;
+@use '~/assets/scss/variables' as *;
 
 .c-works-grid {
   position: relative;

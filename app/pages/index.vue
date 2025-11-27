@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Components
-import TheOrganismHero from '@/components/Organisms/Section/Hero/index.vue'
+import TheOrganismHero from '~/components/Organisms/Section/Hero/index.vue'
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import TheOrganismHero from '@/components/Organisms/Section/Hero/index.vue'
 </template>
 
 <style lang="scss">
-@use '@@/src/scss/variables' as *;
+@use '~/assets/scss/variables' as *;
 
 .c-main {
   position: relative;

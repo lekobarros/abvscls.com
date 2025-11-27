@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue'
-import useOrganismHeroStore from '../composables/useAnimation'
-import * as animations from '@@/src/constants/animations'
+import useOrganismHeroStore from './useAnimation'
+import * as animations from '~/constants/animations'
 
 // General State
 const heroStore = useOrganismHeroStore()
@@ -32,8 +32,7 @@ onMounted((): void => {
 
 <template>
 	<div ref="root" :class="computedClassList">
-		<nuxt-img 
-			src="/img/spinner.svg"
+		<nuxt-img src="/img/spinner.svg"
 			format="webp"
 			width="265"
 			height="265"
@@ -41,3 +40,26 @@ onMounted((): void => {
 		/>
 	</div>
 </template>
+
+<style lang="scss">
+@use '~/assets/scss/variables' as *;
+
+.c-hero__spinner {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+  visibility: hidden;
+
+  @media screen and (min-width: $breakpoint-screen-lg) {
+    visibility: visible;
+
+    &--rotate {
+      img {
+        animation: rotate 16s linear 0s infinite;
+      }
+    }
+  }
+}
+</style>

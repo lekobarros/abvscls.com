@@ -1,52 +1,6 @@
-<template>
-  <section class="relative" ref="root">
-    <!-- Header -->
-    <header class="c-container mb-6">
-      <h2 class="text-woodsmoke-500 font-medium text-2xl capitalize">Featured Works</h2>
-    </header>
-
-    <!-- Featured Work Items -->
-    <div class="relative z-10" @mouseenter="onImagesToggleOpacity(1)" @mouseleave="onImagesToggleOpacity(0)">
-      <ProjectItem
-        @onProjectEnter="setCurrentProjectView"
-        v-for="(item, key) in projects"
-        :key="`c-project-${key}`"
-        :id="key"
-        :title="item.website"
-        :subtitle="item.subtitle || null"
-        :description="item.short_description"
-        :date="item.years"
-        :url="item.url"
-        :color="item.color"
-        @mousemove="onMoveMouse"
-      />
-    </div>
-
-    <!-- Featured Work Images -->
-    <div class="lg:absolute lg:inset-0 hidden lg:flex lg:pointer-events-none">
-      <div class="c-container">
-        <div class="c-works-grid">
-          <div class="c-works-grid_wrap">
-            <!-- Work Spotlight -->
-            <div class="c-works-spotlight" ref="spotlight">
-              <div class="c-works-spotlight_images" ref="spotlightImage">
-                <!-- Work Images -->
-                <div class="c-works-spotlight_image" v-for="(item, key) in projects" :key="`c-project-${key}`">
-                  <NuxtImg :src="item.frame" :alt="`Project ${key}`" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
-
-
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import projects from '@/src/data/projects'
+import projects from '~/data/projects'
 import gsap from 'gsap'
 
 // Components
@@ -83,7 +37,7 @@ watch(currentProjectView, value => {
 			const translateY = `-${id * spotlightImageSize}rem`
 
 			// Call Animation
-			gsap.killTweensOf([wrapper, image])
+			gsap.killTweensOf([ wrapper, image ])
 			gsap.to(wrapper, { top, duration: 0.3, ease: 'cubic-bezier(0.86, 0, 0.07, 1)' })
 			gsap.to(image, { translateY, duration: 0.3, ease: 'cubic-bezier(0.86, 0, 0.07, 1)' })
 		}
@@ -127,7 +81,7 @@ const onMoveMouse = (event: MouseEvent) => {
 
 	const wrapper = spotlight.value
 
-	if (wrapper instanceof HTMLElement ) {
+	if (wrapper instanceof HTMLElement) {
 		const y = `${axisY * 0.5}rem`
 		const x = `${axisX * 1.5}rem`
 		// console.log(x, y)
@@ -137,14 +91,68 @@ const onMoveMouse = (event: MouseEvent) => {
 
 		// Call Animation
 		// gsap.killTweensOf(wrapper)
-		gsap.to(wrapper, { x,  transformOrigin:'0% 100%', duration: 0.3, ease: 'cubic-bezier(0.86, 0, 0.07, 1)' })
+		gsap.to(wrapper, { x, transformOrigin: '0% 100%', duration: 0.3, ease: 'cubic-bezier(0.86, 0, 0.07, 1)' })
 		// gsap.to(image, { translateY, duration: 0.3, ease: 'cubic-bezier(0.86, 0, 0.07, 1)' })
 	}
 }
 </script>
 
+
+<template>
+	<section class="relative"
+		ref="root"
+		data-scroll-section
+	>
+		<!-- Header -->
+		<header class="c-container mb-6">
+			<h2 class="text-woodsmoke-500 font-medium text-2xl capitalize">Featured Works</h2>
+		</header>
+
+		<!-- Featured Work Items -->
+		<div class="relative z-10"
+			@mouseenter="onImagesToggleOpacity(1)"
+			@mouseleave="onImagesToggleOpacity(0)"
+		>
+			<project-item @onProjectEnter="setCurrentProjectView"
+				v-for="(item, key) in projects"
+				:key="`c-project-${key}`"
+				:id="key"
+				:title="item.website"
+				:subtitle="item.subtitle || null"
+				:description="item.short_description"
+				:date="item.years"
+				:url="item.url"
+				:color="item.color"
+				@mousemove="onMoveMouse"
+			/>
+		</div>
+
+		<!-- Featured Work Images -->
+		<div class="lg:absolute lg:inset-0 hidden lg:flex lg:pointer-events-none">
+			<div class="c-container">
+				<div class="c-works-grid">
+					<div class="c-works-grid_wrap">
+						<!-- Work Spotlight -->
+						<div class="c-works-spotlight" ref="spotlight">
+							<div class="c-works-spotlight_images" ref="spotlightImage">
+								<!-- Work Images -->
+								<div class="c-works-spotlight_image"
+									v-for="(item, key) in projects"
+									:key="`c-project-${key}`"
+								>
+									<nuxt-img :src="item.frame" :alt="`Project ${key}`" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</template>
+
 <style lang="scss">
-@use '@@/src/scss/variables' as *;
+@use '~/assets/scss/variables' as *;
 
 .c-works-grid {
   position: relative;

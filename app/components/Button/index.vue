@@ -15,7 +15,7 @@ const props = defineProps<{
 </template>
 
 <style lang="scss">
-@use '@@/src/scss/colors' as *;
+@use '~/assets/scss/colors' as *;
 
 .c-button {
   background-color: white;

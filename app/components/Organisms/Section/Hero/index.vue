@@ -37,8 +37,8 @@ onMounted((): void => {
 </template>
 
 <style lang="scss">
-@use '@@/src/scss/variables' as *;
-@use '@@/src/scss/colors' as *;
+@use '~/assets/scss/variables' as *;
+@use '~/assets/scss/colors' as *;
 
 .section-hero {
   position: relative;

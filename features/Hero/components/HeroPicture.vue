@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 
-import * as animations from '@/src/constants/animations'
+import * as animations from '~/constants/animations'
 
 // Composables
-import useHeroAnimations from '../composables/useHeroAnimations'
+import useHeroAnimations from '~/composables/useHeroAnimations'
 
 // General State
 const heroAnimations = useHeroAnimations()
@@ -23,9 +23,8 @@ onMounted((): void => {
 
 <template>
 	<div ref="root" class="c-hero__picture">
-		<nuxt-picture 
-			format="webp"
-			src="/img/hero-abvscls.jpg" 
+		<nuxt-picture format="webp"
+			src="/img/hero-abvscls.jpg"
 			:img-attrs="{
 				alt: 'Alex Vasconcelos standing in front of a large screen'
 			}"
@@ -35,3 +34,44 @@ onMounted((): void => {
 		/>
 	</div>
 </template>
+
+<style lang="scss">
+@use '~/assets/scss/variables' as *;
+
+.c-hero__picture {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+
+  &>picture {
+    border-radius: 35px;
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: $breakpoint-screen-lg) {
+    order: 0;
+  }
+
+  @media screen and (min-width: $breakpoint-screen-lg) {
+    grid-area: 1 / 4 / 13 / 13;
+  }
+
+  @media screen and (min-width: $breakpoint-screen-xl) {
+    grid-area: 2 / 5 / 12 / 13;
+  }
+
+  @media screen and (min-width: $breakpoint-screen-2xl) {
+    grid-area: 2 / 6 / 12 / 13;
+  }
+
+  @media screen and (min-width: $breakpoint-screen-3xl) {
+    grid-area: 1 / 6 / 13 / 13;
+  }
+}
+</style>
