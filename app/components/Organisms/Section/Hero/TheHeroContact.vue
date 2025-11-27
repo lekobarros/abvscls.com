@@ -18,59 +18,60 @@ const socialData = ref(LIST_SOCIAL_DATA)
 
 // Hooks
 onMounted((): void => {
-  const { value: el } = root as { value: HTMLElement | null }
+	const { value: el } = root as { value: HTMLElement | null }
 
-  if (!el) return console.warn('Element or timeline not found')
+	if (!el) return console.warn('Element or timeline not found')
 
-  const query = gsap.utils.selector(el)
+	const query = gsap.utils.selector(el)
 
-  const elTextFollow = el.querySelector('.c-hero__contact-text span') as HTMLElement
-  const elTextContactLine = el.querySelector('.c-hero__contact-line') as HTMLElement
-  const split = splitText.create(elTextFollow, { type: 'chars' })
+	const elTextFollow = el.querySelector('.c-hero__contact-text span') as HTMLElement
+	const elTextContactLine = el.querySelector('.c-hero__contact-line') as HTMLElement
+	const split = splitText.create(elTextFollow, { type: 'chars' })
 
-  heroAnimations.set('.c-hero__contact-rotate', { opacity: 0, rotate: '-80deg' })
-  heroAnimations.set(split.chars, { opacity: 0, translateX: 0, rotate: '-3deg' })
-  heroAnimations.set(elTextContactLine, { opacity: 0, width: 0 })
+	heroAnimations.set('.c-hero__contact-rotate', { opacity: 0, rotate: '-80deg' })
+	heroAnimations.set(split.chars, { opacity: 0, translateX: 0, rotate: '-3deg' })
+	heroAnimations.set(elTextContactLine, { opacity: 0, width: 0 })
 
-  // const timeline = heroAnimations.timeline
-  // console.log('Hero Contact Timeline:', timeline)
-  // const x = timeline.getTweensOf(split.chars, true)
+	// const timeline = heroAnimations.timeline
+	// console.log('Hero Contact Timeline:', timeline)
+	// const x = timeline.getTweensOf(split.chars, true)
 
-  // console.log('Split Chars Animation Duration:', splitCharsDuration)
-  // console.log('Split Text Chars:', x)
+	// console.log('Split Chars Animation Duration:', splitCharsDuration)
+	// console.log('Split Text Chars:', x)
 
-  // heroAnimations.set(query('.c-hero__contact-navbar li'), { opacity: 0, scale: 0.8 })
-  // heroAnimations.add('.c-hero__contact-rotate', { opacity: 1, translateX: 0, rotate: '-90deg', duration: 0.3 }, animations.HERO_START)
-  // heroAnimations.add(split.chars, { opacity: 1, stagger: 0.05, duration: 0.1 }, animations.HERO_START)
-  // heroAnimations.add(elTextContactLine, { opacity: 1, width: '5rem', duration: 0.6, delay: 0.45 }, animations.HERO_START)
+	// heroAnimations.set(query('.c-hero__contact-navbar li'), { opacity: 0, scale: 0.8 })
+	// heroAnimations.add('.c-hero__contact-rotate', { opacity: 1, translateX: 0, rotate: '-90deg', duration: 0.3 }, animations.HERO_START)
+	// heroAnimations.add(split.chars, { opacity: 1, stagger: 0.05, duration: 0.1 }, animations.HERO_START)
+	// heroAnimations.add(elTextContactLine, { opacity: 1, width: '5rem', duration: 0.6, delay: 0.45 }, animations.HERO_START)
 
-  // heroAnimations.add(query('.c-hero__contact-navbar li'), { opacity: 1, scale: 1, stagger: 0.05, duration: 0.1 }, animations.HERO_FIRST_INTERATION)
+	// heroAnimations.add(query('.c-hero__contact-navbar li'), { opacity: 1, scale: 1, stagger: 0.05, duration: 0.1 }, animations.HERO_FIRST_INTERATION)
 })
 </script>
 
 <template>
-  <div ref="root" class="c-hero__contact">
-    <div class="c-hero__contact-rotate">
-      <div class="c-hero__contact-text">
-        <span class="text-xl">Follow Me</span>
-        <div class="c-hero__contact-line" />
-      </div>
+	<div ref="root" class="c-hero__contact">
+		<div class="c-hero__contact-rotate">
+			<div class="c-hero__contact-text">
+				<span class="text-xl">Follow Me</span>
+				<div class="c-hero__contact-line" />
+			</div>
 
-      <ul class="c-hero__contact-navbar" role="list">
-        <li v-for="({ name, url }, key) in socialData" :key="`social-link-${name}`">
-          <a :href="url" target="_blank">
-            <span class="sr-only">Icon for Alex's {{ name }}</span>
-            <Icon name="uil:github" />
-            <!-- <icon :name="`social/${key}`" filled /> -->
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
+			<ul class="c-hero__contact-navbar" role="list">
+				<li v-for="({ name, url }, key) in socialData" :key="`social-link-${name}`">
+					<a :href="url" target="_blank">
+						<span class="sr-only">Icon for Alex's {{ name }}</span>
+						<icon name="uil:github" />
+						<!-- <icon :name="`social/${key}`" filled /> -->
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </template>
 
 <style lang="scss">
 @use '@@/src/scss/variables' as *;
+@use '@@/src/scss/colors' as *;
 
 .c-hero__contact {
   position: relative;

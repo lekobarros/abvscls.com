@@ -18,7 +18,7 @@ const props = defineProps<{
 import CButton from '@/components/Button/index.vue'
 
 // General State
-const emit = defineEmits(['onProjectEnter'])
+const emit = defineEmits([ 'onProjectEnter' ])
 
 // Methods
 const onMouseEnter = (): void => {
@@ -27,28 +27,31 @@ const onMouseEnter = (): void => {
 </script>
 
 <template>
-  <div class="c-work" :id="`c-project-${props.id}`" @mouseenter="onMouseEnter">
-    <div class="c-work-bg" />
-    <div class="c-container">
-      <div class="c-work-wrap">
-        <!-- Project Info -->
-        <div class="c-work-heading">
-          <h3 class="c-work-heading__title">{{ props.title }}</h3>
-          <p class="mb-2" v-if="props.subtitle">{{ props.subtitle }}</p>
-          <p class="text-xs font-medium" v-if="props.date">{{ props.date }}</p>
-        </div>
+	<div class="c-work"
+		:id="`c-project-${props.id}`"
+		@mouseenter="onMouseEnter"
+	>
+		<div class="c-work-bg" />
+		<div class="c-container">
+			<div class="c-work-wrap">
+				<!-- Project Info -->
+				<div class="c-work-heading">
+					<h3 class="c-work-heading__title">{{ props.title }}</h3>
+					<p class="mb-2" v-if="props.subtitle">{{ props.subtitle }}</p>
+					<p class="text-xs font-medium" v-if="props.date">{{ props.date }}</p>
+				</div>
 
-        <!-- Project Description -->
-        <div class="c-work-node">
-          <p>{{ description }}</p>
+				<!-- Project Description -->
+				<div class="c-work-node">
+					<p>{{ description }}</p>
 
-          <div class="c-work-actions" v-if="props.url">
-            <c-button :to="props.url">Live Website</c-button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+					<div class="c-work-actions" v-if="props.url">
+						<c-button :to="props.url">Live Website</c-button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <style lang="scss">

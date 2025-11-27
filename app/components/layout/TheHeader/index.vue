@@ -10,48 +10,51 @@ const { isLoaded } = storeToRefs(globalStore)
 const root = ref<HTMLElement | null>(null)
 
 watch(isLoaded, newVal => {
-  if (newVal) createHeroAnimation()
+	if (newVal) createHeroAnimation()
 })
 
 onMounted((): void => {
-  if (!globalStore.isLoaded) doResetAnimation()
+	if (!globalStore.isLoaded) doResetAnimation()
 })
 
 // Methods
 const createHeroAnimation = (): void => {
-  const tl = gsap.timeline({ paused: !0 })
-  const query = gsap.utils.selector(root.value)
-  const children = [query('.c-nav-logo-text'), query('.c-nav-button')]
+	const tl = gsap.timeline({ paused: !0 })
+	const query = gsap.utils.selector(root.value)
+	const children = [ query('.c-nav-logo-text'), query('.c-nav-button') ]
 
-  // Start Timeline
-  tl.addLabel('start', '>')
-  tl.heroFadeIn(children, {}, 'start+=0.05')
+	// Start Timeline
+	tl.addLabel('start', '>')
+	tl.heroFadeIn(children, {}, 'start+=0.05')
 
-  tl.play()
+	tl.play()
 }
 
 const doResetAnimation = (): void => {
-  const query = gsap.utils.selector(root.value)
-  const children = [query('.c-nav-logo-text'), query('.c-nav-button')]
+	const query = gsap.utils.selector(root.value)
+	const children = [ query('.c-nav-logo-text'), query('.c-nav-button') ]
 
-  gsap.set(children, { opacity: 0, translateY: '15%', rotate: '1deg' })
+	gsap.set(children, { opacity: 0, translateY: '15%', rotate: '1deg' })
 }
 </script>
 
 <template>
-  <header ref="root" class="c-nav">
-    <nav class="c-nav-container">
-      <!-- Home Link -->
-      <NuxtLink to="/" class="c-nav-logo-text">
-        abvscls
-      </NuxtLink>
-      <!-- Redirect: Linkedin -->
-      <a href="https://www.linkedin.com/in/lekobarros/" target="_blank" class="c-nav-button">
-        <div class="c-nav-button-emoji" aria-label="Say Hello">👋</div>
-        <div class="c-nav-button-text">Say Hello</div>
-      </a>
-    </nav>
-  </header>
+	<header ref="root" class="c-nav">
+		<nav class="c-nav-container">
+			<!-- Home Link -->
+			<nuxt-link to="/" class="c-nav-logo-text">
+				abvscls
+			</nuxt-link>
+			<!-- Redirect: Linkedin -->
+			<a href="https://www.linkedin.com/in/lekobarros/"
+				target="_blank"
+				class="c-nav-button"
+			>
+				<div class="c-nav-button-emoji" aria-label="Say Hello">👋</div>
+				<div class="c-nav-button-text">Say Hello</div>
+			</a>
+		</nav>
+	</header>
 </template>
 
 <style lang="scss">

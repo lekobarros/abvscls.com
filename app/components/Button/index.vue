@@ -1,15 +1,18 @@
-<template>
-  <NuxtLink class="c-button" :to="props.to" target="_blank">
-    <slot></slot>
-  </NuxtLink>
-</template>
-
 <script lang="ts" setup>
 const props = defineProps<{
   to: string | object
 }>()
 
 </script>
+
+<template>
+	<nuxt-link class="c-button"
+		:to="props.to"
+		target="_blank"
+	>
+		<slot />
+	</nuxt-link>
+</template>
 
 <style lang="scss">
 @use '@@/src/scss/colors' as *;

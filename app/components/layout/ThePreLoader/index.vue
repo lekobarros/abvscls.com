@@ -26,7 +26,7 @@ const randPhrases = [
 
 const doGenerateRandomPharses = (): string[] => {
 	let randomItems: string[] = []
-	let localRandPharses = [...randPhrases]
+	let localRandPharses = [ ...randPhrases ]
 
 	// Get 3 random items from the array
 	for (let i = 0; i < 3; i++) {
@@ -92,7 +92,10 @@ const createLoadAnimation = (): void => {
 	<div :class="[$style.boxLoader, animationFinished && 'hidden']">
 		<!-- Generated Phartses -->
 		<div ref="pharses">
-			<div v-for="(pharse, key) in generatedPharses" :key="`box-loader-text-${key}`" :class="$style.boxLoaderText">
+			<div v-for="(pharse, key) in generatedPharses"
+				:key="`box-loader-text-${key}`"
+				:class="$style.boxLoaderText"
+			>
 				{{ pharse }}
 			</div>
 		</div>

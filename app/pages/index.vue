@@ -4,9 +4,9 @@ import TheOrganismHero from '@/components/Organisms/Section/Hero/index.vue'
 </script>
 
 <template>
-  <main ref="root" class="c-main">
-    <TheOrganismHero />
-  </main>
+	<main ref="root" class="c-main">
+		<the-organism-hero />
+	</main>
 </template>
 
 <style lang="scss">

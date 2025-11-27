@@ -16,24 +16,24 @@ import TheHeroContact from './TheHeroContact.vue'
 
 // Hooks
 onBeforeMount((): void => {
-  if (!heroAnimations.timeline) heroAnimations.createTimeline()
+	if (!heroAnimations.timeline) heroAnimations.createTimeline()
 })
 
 onMounted((): void => {
-  heroAnimations.start()
+	heroAnimations.start()
 })
 </script>
 
 <template>
-  <div class="section-hero">
-    <div class="c-container">
-      <div class="c-hero">
-        <TheHeroText />
-        <TheHeroPicture />
-        <TheHeroContact />
-      </div>
-    </div>
-  </div>
+	<div class="section-hero">
+		<div class="c-container">
+			<div class="c-hero">
+				<the-hero-text />
+				<the-hero-picture />
+				<the-hero-contact />
+			</div>
+		</div>
+	</div>
 </template>
 
 <style lang="scss">
