@@ -1,87 +1,87 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	ssr: false,
-	devtools: {
-		enabled: false
-	},
-	app: {
-		head: {
-			title: 'Alex Vasconcelos — Front-end Developer',
-			titleTemplate: '%s | Alex Vasconcelos',
-			meta: [
-				{
-					name: 'description',
-					content: 'Expert Front-end Engineer in Vue.js and React, crafting captivating and responsive Single Page Applications (SPAs) with fluid animations.'
+				ssr: false,
+				devtools: {
+								enabled: false
 				},
-				{
-					name: 'theme-color',
-					content: '#F8E098'
-				}
-			],
-			charset: 'utf-8',
-			viewport: 'width=device-width, initial-scale=1',
-			htmlAttrs: {
-				lang: 'en'
-			}
-		}
-	},
+				app: {
+								head: {
+												title: 'Alex Vasconcelos — Front-end Developer',
+												titleTemplate: '%s | Alex Vasconcelos',
+												meta: [
+																{
+																				name: 'description',
+																				content: 'Expert Front-end Engineer in Vue.js and React, crafting captivating and responsive Single Page Applications (SPAs) with fluid animations.'
+																},
+																{
+																				name: 'theme-color',
+																				content: '#F8E098'
+																}
+												],
+												charset: 'utf-8',
+												viewport: 'width=device-width, initial-scale=1',
+												htmlAttrs: {
+																lang: 'en'
+												}
+								}
+				},
 
-	// Global CSS
-	css: [
-		'@@/app/assets/css/main.css',
-		'@@/src/scss/main.scss'
-	],
+				// Global CSS
+				css: [
+								'@@/app/assets/css/main.css',
+								'@@/src/scss/main.scss'
+				],
 
-	// Nuxt Modules
-	modules: [
-		'@vueuse/nuxt',
-		'@nuxtjs/fontaine',
-		'@nuxt/image',
-		'@pinia/nuxt',
-		'@nuxtjs/eslint-module',
-		// '@zadigetvoltaire/nuxt-gtm',
-		'motion-v/nuxt',
-		'@nuxt/icon',
-		'@nuxtjs/tailwindcss'
-	],
+				// Nuxt Modules
+				modules: [
+								'@vueuse/nuxt',
+								'@nuxtjs/fontaine',
+								'@nuxt/image',
+								'@pinia/nuxt',
+								'@nuxtjs/eslint-module',
+								// '@zadigetvoltaire/nuxt-gtm',
+								'motion-v/nuxt',
+								'@nuxt/icon',
+								'@nuxtjs/tailwindcss'
+				],
 
-	fontMetrics: {
-		fonts: ['Satoshi']
-	},
+				fontMetrics: {
+								fonts: ['Satoshi']
+				},
 
-	// gtm: {
-	// 	id: process.env.GTM_TAG as string
-	// },
+				// gtm: {
+				// 	id: process.env.GTM_TAG as string
+				// },
 
-	image: {
-		screens: {
-			xs: 320,
-			sm: 640,
-			md: 768,
-			lg: 1024,
-			xl: 1280,
-			'2xl': 1536,
-			'3xl': 1800,
-			'4xl': 2100
-		}
-	},
+				image: {
+								screens: {
+												xs: 320,
+												sm: 640,
+												md: 768,
+												lg: 1024,
+												xl: 1280,
+												'2xl': 1536,
+												'3xl': 1800,
+												'4xl': 2100
+								}
+				},
 
-	postcss: {
-		plugins: {
-			tailwindcss: {},
-			autoprefixer: {}
-		}
-	},
+				postcss: {
+								plugins: {
+												tailwindcss: {},
+												autoprefixer: {}
+								}
+				},
 
-	vite: {
-		css: {
-			preprocessorOptions: {
-				scss: {
-					additionalData: `
-						@import "@@/src/scss/_variables.scss";
-						@import "@@/src/scss/_colors.scss";`
-				}
-			}
-		}
-	},
+				vite: {
+								css: {
+												preprocessorOptions: {
+																scss: {
+																				additionalData: `
+																								@import "@@/src/scss/_variables.scss";
+																								@import "@@/src/scss/_colors.scss";`
+																}
+												}
+								}
+				},
 })

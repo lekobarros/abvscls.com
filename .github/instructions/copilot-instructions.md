@@ -84,11 +84,13 @@
 - **Embrace Type Safety (TypeScript):** TypeScript is not optional. Instead of passing magic strings or generic objects, you will be passing instances of well-defined types. This may feel more verbose at first, but it eliminates an entire class of runtime errors. Define your Types and Interfaces carefully from the start.
 - **Performance and SEO are Priorities, Not Afterthoughts:** Unlike prototypes, a real-world web application is judged by Google and users based on its speed and accessibility. This means that optimizing data loading (route-based code-splitting), using semantic HTML, and managing state efficiently isn't a luxury—it's an essential part of the project's engineering.
 
-## 🤖 Copilot Guidance
 - Always generate Vue.js code using Composition API, `<script setup>`, and TypeScript.
+- Suggest code following Vue 3 community standards and idioms, applying senior-level code review philosophy with focus on Core Web Vitals (Web Vitals/Core Web Vitals), including web performance metrics such as LCP, CLS, INP, and Lighthouse SEO recommendations.
 - Strictly follow the modular, feature-based architecture within Nuxt conventions.
 - All business logic and state management should reside in a Pinia Store.
 - Reusable, but stateless, UI logic should be extracted into a Composable.
 - For animations, use GSAP and its plugins. Encapsulate complex or reusable animation logic in composables (e.g., `useScrollAnimation.ts`).
 - All fetching of content sources (e.g., Markdown files) should be placed in a Composable (`use...`) or in the Nuxt `server/` directory.
 - Focus on generating semantic HTML and provide feedback on performance (Core Web Vitals) and SEO, leveraging Nuxt's native features for this purpose.
+
+- Code suggestions and reviews must reflect senior Vue.js and web performance expectations, emphasizing semantic correctness, maintainability, and Core Web Vitals (Vue 3 + Web Vitals, e.g., LCP, CLS, INP).
