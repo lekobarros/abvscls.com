@@ -1,96 +1,198 @@
 ## Project Overview
-- This project is a web application for a personal portfolio, with a focus on SEO and publishing posts to improve online visibility.
-- The application is built with Nuxt 4 (using Vue.js, Composition API, and <script setup>) and TypeScript, following a Modular, Feature-Based architecture.
-- State management is handled with Pinia. Animations are built with the GSAP framework, including ScrollTrigger and ScrollSmoother.
+- This is a personal portfolio web application optimized for **SEO, content publishing, and Core Web Vitals performance**.
+- The app is powered by **Nuxt 4** (Vue 3 Composition API, `<script setup>`, and TypeScript).
+- State is managed using **Pinia**, and animations are implemented through **GSAP** (including ScrollTrigger and ScrollSmoother).
 
-## 📂 Folder Structure
-- The project structure follows Nuxt 4 conventions, adapted for a Modular, Feature-Based architecture.
-- **assets/:** Contains uncompiled assets such as fonts, icons, and global stylesheets.
-- **components/:** Contains global and reusable UI components (e.g., BaseButton.vue, TheHeader.vue). They are auto-imported by Nuxt.
-- **composables/:** Contains global Vue composables (e.g., useMetadata.ts). They are auto-imported.
-- **features/:** The main container for feature modules. Each subdirectory represents a business feature.
-  - **Posts/:** The feature for listing and displaying posts.
-    - **components/:** Components specific to the Posts feature. Thanks to Nuxt, a component like Card.vue here can be used as `<PostsCard />` anywhere in the application.
-    - **store/:** The feature's Pinia store (postsStore.ts).
-    - **types/:** TypeScript interfaces and types specific to this feature.
-- **layouts/:** Contains the application layouts (e.g., default.vue).
-- **pages/:** Contains the views and defines the application's routing (e.g., index.vue, posts/[id].vue).
-- **plugins/:** Contains plugins that are executed when the application is created (e.g., gsap.client.ts).
-- **server/:** Contains the application's backend logic (API routes, middleware).
-- **store/:** Contains global Pinia stores. Feature-specific stores should be in their respective features folder.
-- **tests/:** Unit and component tests.
-- **nuxt.config.ts:** The main Nuxt configuration file.
+---
 
-## 🛠️ Libraries and Frameworks
-- **Nuxt 3+:** The full-stack framework for Vue.js, handling the build process, routing, server-side rendering, and more.
-- **Vue.js 3+:** The core of Nuxt, for declarative UI development (with Composition API and `<script setup>`).
-- **Pinia:** For state management, natively integrated with Nuxt.
-- **TypeScript:** For static typing and type safety.
-- **GSAP (GreenSock Animation Platform):** For complex and interactive animations, including the ScrollTrigger and ScrollSmoother plugins.
-- **Vitest:** For testing.
+## Nuxt 4 Application Philosophy
 
-## 🏛️ Architecture Guidelines
-- Strictly follow the Modular, Feature-Based pattern within Nuxt 3 conventions:
-- **Model/Type (features/FeatureName/types):** Represents the application's data using TypeScript interfaces. Types specific to a feature reside within their own types folder. Global types can be placed in a `types/` directory at the project root.
-- **Page (pages/):** A page component, activated by a route based on its location in the `pages` directory. It should orchestrate the display of components and interact with stores to fetch data.
-- **Component (components/ or features/FeatureName/components):** Declarative UI built in Vue. Global components are located in the root `components/` directory. Components for a specific feature are located inside the `features/FeatureName/components/` folder and are automatically prefixed (e.g., `<PostsCard />`).
-- **Store (Pinia - store/ or features/FeatureName/store):** Manages the state. Global stores are in the root `store/` directory. Feature-specific stores reside in their `features/FeatureName/store/` folder. Contains business logic and interacts with composables or the `server/` directory to fetch data.
-- **Composable (composables/ or features/FeatureName/composables):** Contains reusable logic. Global composables are in the root `composables/` directory and are auto-imported. Feature-specific composables can be in their own folder and need to be imported manually.
+- The main application code must reside in the `app/` directory.
+- Directories such as `server/`, `public/`, `shared/`, and `content/` remain at the root level alongside `nuxt.config.ts`.
+- Nuxt 4 enforces **isolated TypeScript execution contexts**:
+  - `app/` → Client bundle & UI layer
+  - `server/` → Backend logic and API routes
+  - `shared/` → Optional shared universal code validated at build time
+- Data fetching is standardized using `useFetch` and `useAsyncData`, benefiting from:
+  - instant data clearing on refetch
+  - keyed cache sharing across components
+  - automatic cleanup on component unmount
+  - more consistent UX and improved INP/LCP results
 
-## 🎨 Animation Guidelines
-- **Fundamental Principles**
-  - **Performance First:** Prioritize animating properties that do not cause layout reflow/repaint. Use `transform` (translate, scale, rotate) and `opacity` whenever possible, as they are GPU-optimized.
-  - **Fast and Responsive Animations:** Animations should be quick and feel snappy.
-    - The default duration should be between 0.2s and 0.3s.
-    - Avoid animations longer than 1s, unless they are purely illustrative and do not block user interaction.
-  - **When to use CSS vs. GSAP:**
-    - **CSS Transitions/Animations:** Ideal for simple states and direct interactions, such as hover effects on buttons, color transitions, or a single element's fade-in/out.
-    - **GSAP:** Essential for complex, sequenced animations (timelines), scroll-based animations (ScrollTrigger), or those requiring precise control over timing and animation physics.
-- **CSS Guidelines**
-  - **Easing Rules**
-    - Do not use the default CSS easing curves, except for `ease` (for simple hovers) and `linear`. For consistency, use the following cubic-bezier curves:
-    - **ease-out (Starts fast, slows down)**
-      - Primary use case. Ideal for elements entering the screen or responding to a user action.
-      - `ease-out-cubic: cubic-bezier(.215, .61, .355, 1)`
-      - `ease-out-quart: cubic-bezier(.165, .84, .44, 1)`
-      - `ease-out-expo: cubic-bezier(.19, 1, .22, 1)`
-    - **ease-in-out (Smooth acceleration and deceleration)**
-      - Perfect for elements moving from one point to another within the screen.
-      - `ease-in-out-cubic: cubic-bezier(.645, .045, .355, 1)`
-      - `ease-in-out-quart: cubic-bezier(.77, 0, .175, 1)`
-    - **ease-in (Starts slow, speeds up)**
-      - Avoid whenever possible, as it can make the UI feel sluggish.
-      - `ease-in-cubic: cubic-bezier(.550, .055, .675, .19)`
-  - **Hover Transitions**
-    - For simple transitions (color, background-color, opacity), use `ease` with a duration of `200ms`.
-    - For more complex transitions (like `transform`), use the ease-out rules above.
-    - Disable hover transitions on devices without a fine pointer to avoid "stuck" states on mobile:
-    ```css
-    @media (hover: hover) and (pointer: fine) {
-      /* your hover code here */
-    }
-    ```
-- **GSAP Guidelines**
-  - **Encapsulate in Composables:** Complex or reusable animation logic should be extracted into a Composable (e.g., `useFadeInAnimation.ts`). This keeps components clean and the animation logic testable and isolated.
-  - **Lifecycle Management:** Always clean up your animations to prevent memory leaks. Use Vue's `onBeforeUnmount` hook to kill GSAP timelines and ScrollTrigger instances.
-  - **ScrollTrigger:** Use it to create animations triggered by the scroll position. Keep markers (`markers: true`) on during development for easy debugging, but remove them in production.
-  - **Selectors:** Prefer using Vue refs over string selectors (classes or IDs) to link GSAP to DOM elements. This ensures the animation targets the correct element, especially as components are created and destroyed.
+---
 
-## 📝 Mindset Shift: Standardization and Best Practices
-- This section provides tips for aligning common Vue development instincts with this architecture's paradigm.
-- **State is Centralized by Feature:** Instead of a single monolithic global store or state scattered across components, the philosophy here is to keep state as close as possible to the feature that uses it. Each feature has its own state "mini-supermarket" with Pinia. This makes the data flow explicit and modular.
-- **The Component is Just the "Presentation":** A `.vue` component should not contain complex business logic or API calls. It is a lightweight "blueprint" that describes what the UI should look like for a given state. The business logic and state persistence come from the Pinia Store that feeds it. Keep your `.vue` files focused on the template and minimal interactions.
-- **Business Logic Lives in the Store:** Abandon the idea of placing fetch calls or complex calculations inside component lifecycle hooks (`onMounted`). All of this logic belongs in Pinia actions and getters. This makes the logic more explicit, reusable, and much easier to test.
-- **Embrace Type Safety (TypeScript):** TypeScript is not optional. Instead of passing magic strings or generic objects, you will be passing instances of well-defined types. This may feel more verbose at first, but it eliminates an entire class of runtime errors. Define your Types and Interfaces carefully from the start.
-- **Performance and SEO are Priorities, Not Afterthoughts:** Unlike prototypes, a real-world web application is judged by Google and users based on its speed and accessibility. This means that optimizing data loading (route-based code-splitting), using semantic HTML, and managing state efficiently isn't a luxury—it's an essential part of the project's engineering.
+## Recommended Folder Structure
 
-- Always generate Vue.js code using Composition API, `<script setup>`, and TypeScript.
-- Suggest code following Vue 3 community standards and idioms, applying senior-level code review philosophy with focus on Core Web Vitals (Web Vitals/Core Web Vitals), including web performance metrics such as LCP, CLS, INP, and Lighthouse SEO recommendations.
-- Strictly follow the modular, feature-based architecture within Nuxt conventions.
-- All business logic and state management should reside in a Pinia Store.
-- Reusable, but stateless, UI logic should be extracted into a Composable.
-- For animations, use GSAP and its plugins. Encapsulate complex or reusable animation logic in composables (e.g., `useScrollAnimation.ts`).
-- All fetching of content sources (e.g., Markdown files) should be placed in a Composable (`use...`) or in the Nuxt `server/` directory.
-- Focus on generating semantic HTML and provide feedback on performance (Core Web Vitals) and SEO, leveraging Nuxt's native features for this purpose.
+```
+project-root/
+├─ app/
+│  ├─ assets/          # global fonts, icons, CSS (uncompiled)
+│  ├─ components/      # global reusable UI components (auto-imported)
+│  ├─ composables/     # client logic, reusable helpers, data fetching (auto-imported)
+│  ├─ layouts/         # page layouts
+│  ├─ pages/           # routing views
+│  ├─ middleware/      # optional route guards or interceptors
+│  ├─ plugins/         # app-lifecycle plugins (`*.client.ts` or universal)
+│  ├─ utils/           # internal client utility functions
+│  ├─ app.vue          # application entry component
+│  ├─ error.vue        # global error UI fallback (optional)
+│  └─ app.config.ts    # runtime app configuration
+├─ public/             # static public files
+├─ server/             # API logic and server-side middleware
+├─ shared/             # optional universal shared types or logic
+├─ content/            # portfolio posts or CMS integration (optional)
+└─ nuxt.config.ts      # Nuxt 4 config
+```
 
-- Code suggestions and reviews must reflect senior Vue.js and web performance expectations, emphasizing semantic correctness, maintainability, and Core Web Vitals (Vue 3 + Web Vitals, e.g., LCP, CLS, INP).
+---
+
+## Code Ownership Guidelines
+
+### UI Components
+- Must contain **only presentation logic**
+- Must **not** contain:
+  - data fetching
+  - heavy computation
+  - business rules
+- All DOM animation targets should use **Vue refs**, never raw CSS selectors.
+
+### Pinia Stores
+- All **business logic, persistence, and state mutations must live here**
+- Stores should be colocated inside features when related to a domain:
+  - `app/features/<FeatureName>/store/<storeName>.ts`
+
+### Composables
+- Must handle:
+  - typed data fetching (`useFetch`, `useAsyncData`)
+  - reusable client utilities
+  - stateless UI logic
+  - animation logic when extracted (e.g., `useFadeInAnimation.ts` or `useScrollAnimation.ts`)
+- Must return strongly typed interfaces (`T`) and avoid untyped objects.
+
+### Feature Modules
+- Features should follow encapsulation boundaries inside:
+  - `project-root/features/<FeatureName>/`
+- A feature may contain:
+  - `components/` → UI
+  - `store/` → Pinia state and logic
+  - `types/` → scoped TypeScript interfaces
+  - `composables/` (optional) → feature-bound reusable logic (manual import)
+  - utilities and helpers bound to that feature
+
+---
+
+## Core Web Vitals Code Review Requirements (Senior Standard)
+
+Every code suggestion and review must prioritize these outcomes:
+
+| Metric | Target | What reviewers must detect |
+|---|---|---|
+| **LCP** | `< 2.5s` | blocking JS, long hydration chains, unoptimized assets, images without CDN/responsive sizing |
+| **CLS** | `< 0.1` | missing reserved space for async content, layout thrashing, fonts without `font-display: swap` |
+| **INP** | `< 200ms` | long main-thread tasks, poor scheduler yielding, synchronous expensive rendering, event handler contention |
+| **SEO** | `90+ (Lighthouse)` | missing semantic structure, incorrect heading hierarchy, a11y issues, missing structured data or meta tags |
+
+Additional priorities:
+
+- Use **SSR or SSG appropriately for content**
+- Ensure **semantic HTML**
+- Ensure **optimized hydration**
+- Ensure **image component usage for automatic optimization**
+- Ensure **main-thread free scheduling for interactions**
+- Ensure **minimal JavaScript blocking**
+- Ensure **proper caching strategy for async data**
+- Ensure **accessibility and SEO are evaluated equally with performance**
+
+---
+
+## Animation & Interaction Philosophy (Nuxt 4 + GSAP + Web Vitals)
+
+### CSS vs GSAP
+- Use **CSS transitions** for simple state interactions.
+- Use **GSAP** for:
+  - scroll-bound motion
+  - sequenced timelines
+  - gesture-based or physics motion
+  - complex lifecycle animation (must always be destroyed with `onBeforeUnmount`)
+
+### Animation Rules
+- Default duration: **0.2s – 0.3s**
+- Interactive motion must not exceed: **1s**
+- Use only GPU-safe properties:
+  - `transform`, `opacity`
+
+Allowed easing curves for consistency:
+- `ease-out-cubic: cubic-bezier(.215, .61, .355, 1)`
+- `ease-out-quart: cubic-bezier(.165, .84, .44, 1)`
+- `ease-out-expo: cubic-bezier(.19, 1, .22, 1)`
+- `ease-in-out-cubic: cubic-bezier(.645, .045, .355, 1)`
+- `ease-in-out-quart: cubic-bezier(.77, 0, .175, 1)`
+- **No ease-in curves in UI motion**
+
+Disable hover on devices without a fine pointer:
+
+```css
+@media (hover: hover) and (pointer: fine) {
+  /* hover styles */
+}
+```
+
+---
+
+---
+
+## CSS Architecture & Naming (BEM)
+
+- All CSS class names must follow the **BEM methodology**:
+  - `block` → independent component (e.g., `card`, `hero`, `site-header`)
+  - `block__element` → part of a block that has no standalone meaning (e.g., `card__title`, `hero__cta`)
+  - `block--modifier` → variation or state (e.g., `card--highlighted`, `hero--dark`)
+- Components should define a **single root block** for their scope. For example, the root element of `HeroSection.vue` might use `class="hero"` and children use `hero__title`, `hero__subtitle`, `hero__actions`, etc.
+- Avoid styling by `id`, HTML tags, or deeply nested selectors. Class-based selectors should be:
+  - **one or two levels deep** at most
+  - scoped to the relevant block
+- Utility classes (spacing, layout) are allowed but should be:
+  - consistent (`u-`, `l-` prefixes, if used)
+  - minimal and documented if they become part of the design system
+- State should be expressed using **BEM modifiers** or ARIA/state attributes combined with classes (e.g., `button--disabled`, `[aria-expanded="true"]`).
+
+### BEM Examples
+
+```html
+<section class="hero">
+  <div class="hero__content">
+    <h1 class="hero__title">Title</h1>
+    <p class="hero__subtitle">Subtitle</p>
+    <button class="hero__cta hero__cta--primary">Call to action</button>
+  </div>
+</section>
+```
+
+```css
+.hero { /* block */ }
+.hero__content { /* element */ }
+.hero__title { /* element */ }
+.hero__cta { /* element */ }
+.hero__cta--primary { /* modifier */ }
+```
+
+- Copilot must propose new CSS and class names that align with this BEM structure across the project.
+
+## Copilot Output Requirements
+
+- Generate **Vue 3 code** with Composition API, `<script setup>`, TypeScript
+- Follow **community idioms** for Vue 3 and Nuxt 4
+- Apply **senior reviewer mindset**
+- Prioritize **Core Web Vitals thresholds**, semantic correctness, and maintainability
+- All fetched data must come from **composables or server routes**
+- All business logic must come from **Pinia stores**
+- Animation composables must destroy themselves properly
+- Image suggestions must use optimized delivery (Nuxt Image or components that auto-optimize)
+- Reviews must identify main-thread, layout, and hydration risks
+
+---
+
+## Documentation Principles
+
+- All guidelines must evaluate **engineering quality, dev experience (DX), SEO, and performance simultaneously**.
+- This document exists to enforce **senior-level correctness and Web Vitals-first thinking** for all generated suggestions and code reviews.
