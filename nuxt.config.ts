@@ -39,7 +39,6 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'@pinia/nuxt',
 		'@nuxtjs/eslint-module',
-		// '@zadigetvoltaire/nuxt-gtm',
 		'motion-v/nuxt',
 		'@nuxt/icon',
 		'@nuxtjs/tailwindcss'
@@ -48,10 +47,6 @@ export default defineNuxtConfig({
 	fontMetrics: {
 		fonts: [ 'Satoshi' ]
 	},
-
-	// gtm: {
-	// 	id: process.env.GTM_TAG as string
-	// },
 
 	image: {
 		screens: {
