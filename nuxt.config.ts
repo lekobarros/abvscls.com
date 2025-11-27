@@ -1,9 +1,14 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+// https://nuxt.com/docs/4.x/getting-started/configuration
 export default defineNuxtConfig({
+	// Rendering mode
 	ssr: false,
+
+	// Development tools
 	devtools: {
-		enabled: false
+		enabled: false,
 	},
+
+	// App configuration
 	app: {
 		head: {
 			title: 'Alex Vasconcelos — Front-end Developer',
@@ -11,28 +16,25 @@ export default defineNuxtConfig({
 			meta: [
 				{
 					name: 'description',
-					content: 'Expert Front-end Engineer in Vue.js and React, crafting captivating and responsive Single Page Applications (SPAs) with fluid animations.'
+					content: 'Expert Front-end Engineer in Vue.js and React, crafting captivating and responsive Single Page Applications (SPAs) with fluid animations.',
 				},
 				{
 					name: 'theme-color',
-					content: '#F8E098'
-				}
+					content: '#F8E098',
+				},
 			],
 			charset: 'utf-8',
 			viewport: 'width=device-width, initial-scale=1',
 			htmlAttrs: {
-				lang: 'en'
-			}
-		}
+				lang: 'en',
+			},
+		},
 	},
 
-	// Global CSS
-	css: [
-		'~/assets/css/main.css',
-		'~/assets/scss/main.scss'
-	],
+	// Global CSS files
+	css: [ '~/assets/css/main.css', '~/assets/scss/main.scss' ],
 
-	// Nuxt Modules
+	// Nuxt modules
 	modules: [
 		'@vueuse/nuxt',
 		'@nuxtjs/fontaine',
@@ -41,13 +43,15 @@ export default defineNuxtConfig({
 		'@nuxtjs/eslint-module',
 		'motion-v/nuxt',
 		'@nuxt/icon',
-		'@nuxtjs/tailwindcss'
+		'@nuxtjs/tailwindcss',
 	],
 
+	// Fontaine configuration
 	fontMetrics: {
-		fonts: [ 'Satoshi' ]
+		fonts: [ 'Satoshi' ],
 	},
 
+	// Nuxt Image configuration
 	image: {
 		screens: {
 			xs: 320,
@@ -57,25 +61,26 @@ export default defineNuxtConfig({
 			xl: 1280,
 			'2xl': 1536,
 			'3xl': 1800,
-			'4xl': 2100
-		}
+			'4xl': 2100,
+		},
 	},
 
+	// PostCSS configuration
 	postcss: {
 		plugins: {
 			tailwindcss: {},
-			autoprefixer: {}
-		}
+			autoprefixer: {},
+		},
 	},
 
+	// Vite configuration
 	vite: {
 		css: {
 			preprocessorOptions: {
 				scss: {
-					// Modern Sass: use @use in component files instead of additionalData
-					api: 'modern-compiler'
-				}
-			}
-		}
+					api: 'modern-compiler',
+				},
+			},
+		},
 	},
 })
