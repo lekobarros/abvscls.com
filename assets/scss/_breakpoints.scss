@@ -1,0 +1,49 @@
+// Breakpoints and media query helpers
+@use "sass:map";
+
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  "2xl": 1536px
+) !default;
+
+@function breakpoint($name) {
+  @if map.has-key($breakpoints, $name) {
+    @return map.get($breakpoints, $name);
+  }
+  @error "Unknown breakpoint `#{$name}`. Available: #{map.keys($breakpoints)}";
+}
+
+// min-width
+@mixin up($name) {
+  $min: breakpoint($name);
+  @if $min == 0 {
+    @content;
+  } @else {
+    @media (min-width: $min) {
+      @content;
+    }
+  }
+}
+
+// max-width (non-overlapping)
+@mixin down($name) {
+  $max: breakpoint($name);
+  @if $max == 0 {
+    @content;
+  } @else {
+    @media (max-width: #{ $max - 0.02px }) {
+      @content;
+    }
+  }
+}
+
+@mixin between($lower, $upper) {
+  $min: breakpoint($lower);
+  $max: breakpoint($upper);
+  @media (min-width: #{ $min }) and (max-width: #{ $max - 0.02px }) {
+    @content;
+  }
+}

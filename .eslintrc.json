@@ -18,15 +18,6 @@
         "vue"
     ],
     "rules": {
-        "vue/multi-word-component-names": "off",
-        "vue/attributes-order": "off",
-        "vue/singleline-html-element-content-newline": "off",
-        "vue/multiline-html-element-content-newline": "off",
-        "vue/v-on-event-hyphenation": "off",
-        "vue/html-indent": [
-            "error",
-            "tab"
-        ],
         "array-bracket-spacing": [
             "error",
             "always"
@@ -39,6 +30,12 @@
             "error",
             "unix"
         ],
+        "max-len": [
+            "error",
+            {
+                "code": 240
+            }
+        ],
         "quotes": [
             "error",
             "single"
@@ -47,10 +44,27 @@
             "error",
             "never"
         ],
-        "max-len": [
+        "vue/attributes-order": "off",
+        "vue/component-name-in-template-casing": [
+            "error",
+            "kebab-case",
+            {
+                "registeredComponentsOnly": false,
+                "ignores": []
+            }
+        ],
+        "vue/first-attribute-linebreak": "off",
+        "vue/html-indent": [
+            "error",
+            "tab"
+        ],
+        "vue/max-attributes-per-line": [
             "error",
             {
-                "code": 240
+                "singleline": 2,
+                "multiline": {
+                    "max": 1
+                }
             }
         ],
         "vue/max-len": [
@@ -69,7 +83,30 @@
                 "ignoreRegExpLiterals": true
             }
         ],
-        "vue/first-attribute-linebreak": "off",
-        "vue/max-attributes-per-line": "off"
+        "vue/multi-word-component-names": "off",
+        "vue/component-tags-order": [
+            "error",
+            {
+                "order": [
+                    "script",
+                    "template",
+                    "style"
+                ]
+            }
+        ],
+        "vue/block-lang": [
+            "error",
+            {
+                "script": {
+                    "lang": "ts"
+                },
+                "style": {
+                    "lang": "scss"
+                }
+            }
+        ],
+        "vue/multiline-html-element-content-newline": "off",
+        "vue/singleline-html-element-content-newline": "off",
+        "vue/v-on-event-hyphenation": "off"
     }
 }
