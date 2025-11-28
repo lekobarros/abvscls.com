@@ -40,7 +40,6 @@ export default defineNuxtConfig({
 		'@nuxtjs/fontaine',
 		'@nuxt/image',
 		'@pinia/nuxt',
-		'@nuxtjs/eslint-module',
 		'motion-v/nuxt',
 		'@nuxt/icon',
 		'@nuxtjs/tailwindcss',

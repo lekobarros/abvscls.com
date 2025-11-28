@@ -1,0 +1,105 @@
+const browserGlobals = {
+  window: 'readonly',
+  document: 'readonly',
+  navigator: 'readonly',
+  location: 'readonly',
+  localStorage: 'readonly',
+  sessionStorage: 'readonly',
+  console: 'readonly',
+  fetch: 'readonly',
+  Headers: 'readonly',
+  Request: 'readonly',
+  Response: 'readonly',
+  URL: 'readonly',
+  URLSearchParams: 'readonly',
+  Element: 'readonly',
+  Node: 'readonly',
+  CustomEvent: 'readonly',
+  MutationObserver: 'readonly',
+  performance: 'readonly',
+  Blob: 'readonly',
+  FormData: 'readonly',
+  File: 'readonly',
+  FileReader: 'readonly',
+  globalThis: 'readonly',
+}
+
+const es2021Globals = {
+  BigInt: 'readonly',
+  BigInt64Array: 'readonly',
+  BigUint64Array: 'readonly',
+  Atomics: 'readonly',
+  SharedArrayBuffer: 'readonly',
+  Promise: 'readonly',
+  Set: 'readonly',
+  Map: 'readonly',
+  WeakMap: 'readonly',
+  WeakSet: 'readonly',
+  Symbol: 'readonly',
+}
+
+module.exports = [
+  // general defaults for most source files
+  {
+    files: ['**/*.{js,ts,vue}'],
+    ignores: ['.nuxt/**', 'node_modules/**', 'public/**', 'eslint.config.js'],
+    languageOptions: {
+      parser: require('vue-eslint-parser'),
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        parser: require('@typescript-eslint/parser'),
+      },
+      globals: {
+        ...browserGlobals,
+        ...es2021Globals,
+      },
+    },
+    plugins: {
+      vue: require('eslint-plugin-vue'),
+      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+    },
+    rules: {
+      'array-bracket-spacing': ['error', 'always'],
+      indent: ['error', 'tab'],
+      'linebreak-style': ['error', 'unix'],
+      'max-len': ['error', { code: 240 }],
+      quotes: ['error', 'single'],
+      semi: ['error', 'never'],
+      'vue/attributes-order': 'off',
+      'vue/component-name-in-template-casing': [
+        'error',
+        'kebab-case',
+        { registeredComponentsOnly: false, ignores: [] },
+      ],
+      'vue/first-attribute-linebreak': 'off',
+      'vue/html-indent': ['error', 'tab'],
+      'vue/max-attributes-per-line': [
+        'error',
+        { singleline: 2, multiline: { max: 1 } },
+      ],
+      'vue/max-len': [
+        'error',
+        {
+          code: 240,
+          template: 140,
+          tabWidth: 2,
+          comments: 140,
+          ignorePattern: '',
+          ignoreComments: false,
+          ignoreTrailingComments: false,
+          ignoreUrls: true,
+          ignoreStrings: true,
+          ignoreTemplateLiterals: true,
+          ignoreRegExpLiterals: true,
+        },
+      ],
+      'vue/multi-word-component-names': 'off',
+      'vue/block-lang': ['error', { script: { lang: 'ts' }, style: { lang: 'scss' } }],
+      'vue/multiline-html-element-content-newline': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
+      'vue/v-on-event-hyphenation': 'off',
+    },
+  },
+]
+

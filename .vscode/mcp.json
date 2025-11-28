@@ -1,8 +1,16 @@
 {
-  "servers": {
-    "nuxt": {
-      "type": "http",
-      "url": "https://nuxt.com/mcp"
-    }
-  }
+	"servers": {
+		"nuxt": {
+			"type": "http",
+			"url": "https://nuxt.com/mcp"
+		},
+		"my-mcp-server-4f0d38ac": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"@eslint/mcp@latest"
+			]
+		}
+	},
+	"inputs": []
 }
