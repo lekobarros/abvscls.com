@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "@nuxtjs/fontaine": "^0.4.1",
-    "@pinia/nuxt": "^0.4.11",
     "@studio-freight/lenis": "^1.0.23",
     "@vueuse/core": "^10.9.0",
     "@vueuse/nuxt": "^13.9.0",

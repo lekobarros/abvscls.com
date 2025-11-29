@@ -39,7 +39,6 @@ export default defineNuxtConfig({
 		'@vueuse/nuxt',
 		'@nuxtjs/fontaine',
 		'@nuxt/image',
-		'@pinia/nuxt',
 		'motion-v/nuxt',
 		'@nuxt/icon',
 		'@nuxtjs/tailwindcss',
